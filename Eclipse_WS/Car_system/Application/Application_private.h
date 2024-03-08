@@ -44,3 +44,12 @@ static void Buttons_Update(void);
 *   @ Reentrant / Non Reentrant : Reentrant
 */
 static void DashBoard_Update_GearBox_state(uint8 GearBox_state);
+
+/*
+*   @brief : this function used to to Update only state of Adaptive Cruise Control System in DashBoard
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+static void DashBoard_Update_ACCS_State(uint8 ACCS_state);

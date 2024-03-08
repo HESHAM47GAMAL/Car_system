@@ -113,7 +113,7 @@ void Test_B(void)
 
 static void Hanndle_GrearBox_N_State(void)
 {
-    if(GearBox_Current_State == N_GearBox)
+    if(GearBox_Current_State == D_GearBox)
     {
         /*  Disable ACCS if Enabled  */
         ACCS_Currnet_state = ACCS_Disable;
@@ -187,35 +187,6 @@ static void Buttons_Update(void)
         }
     }
 
-    if((GearBox_Current_State == D_GearBox) || (GearBox_Current_State == R_GearBox))
-    {
-        /*  This variable used to carry if button is still pressed after last pressed as any action taken once with first step and if still press nothing happen    */
-        static uint8 Acccelerate_IsStillPressed = NO_Condition;
-        /*  Take current state for button  to check if still pressed*/
-        uint8 Acccelerate_BTN_State = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
-        
-        if(Acccelerate_BTN_State == BTN_Pressed_State)
-        {
-            /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
-            if(Acccelerate_IsStillPressed == NO_Condition)
-            {
-                Acccelerate_IsStillPressed = YES_Condition ;
-                if(ACCS_Currnet_state == ACCS_Disable ) 
-                    ACCS_Currnet_state = ACCS_Enable;
-                else
-                    ACCS_Currnet_state = ACCS_Disable;
-
-                LED_Toggle(Green_LED_PORT,Green_LED_PIN);
-                DashBoard_Update_ACCS_State(ACCS_Currnet_state);
-                
-            }
-        }
-        else
-        {
-            /*  Enter this state when Button released*/
-            Acccelerate_IsStillPressed = NO_Condition ;
-        }
-    }
 
 
 }
@@ -233,7 +204,7 @@ static void DashBoard_Update_GearBox_state(uint8 GearBox_state)
 
 static void DashBoard_Update_ACCS_State(uint8 ACCS_state)
 {
-    const uint8 * ACCS_String[] = {(const uint8 * )"OFF",(const uint8 * )"ON "};
+    const uint8 * ACCS_String[] = {"OFF","ON "};
     /*  Go to index that display current GearBox state*/
     LCD_MoveCursor(2,15);
     /*  Edit its state with new state given to function*/
