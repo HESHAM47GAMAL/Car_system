@@ -23,6 +23,9 @@
 */
 static void Hanndle_GrearBox_N_State(void);
 
+
+
+
 /*
 *   @brief : this function used to initialize what will be displayed in LCD 
 *   @args  void
@@ -53,3 +56,7 @@ static void DashBoard_Update_GearBox_state(uint8 GearBox_state);
 *   @ Reentrant / Non Reentrant : Reentrant
 */
 static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
+
+
+
+static void Braking_Button_Handling(void);

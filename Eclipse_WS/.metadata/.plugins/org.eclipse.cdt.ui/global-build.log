@@ -1,4 +1,4 @@
-21:05:25 **** Incremental Build of configuration Debug for project Car_system ****
+22:31:36 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
 Building file: ../Application/Application_program.c
 Invoking: AVR Compiler
@@ -20,10 +20,10 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   13628 bytes (83.2% Full)
+Program:   13776 bytes (84.1% Full)
 (.text + .data + .bootloader)
 
-Data:         99 bytes (9.7% Full)
+Data:        101 bytes (9.9% Full)
 (.data + .bss + .noinit)
 
 

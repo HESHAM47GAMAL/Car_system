@@ -16,7 +16,7 @@ Application/Application_program.o Application/Application_program.o:  \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
   ../Application/Application_private.h \
-  ../Application/../SERVICE/STD_TYPES.h
+  ../Application/../SERVICE/STD_TYPES.h ../Application/../SERVICE/IVT.h
 
 ../Application/Application_interface.h:
 
@@ -51,3 +51,5 @@ Application/Application_program.o Application/Application_program.o:  \
 ../Application/Application_private.h:
 
 ../Application/../SERVICE/STD_TYPES.h:
+
+../Application/../SERVICE/IVT.h:
