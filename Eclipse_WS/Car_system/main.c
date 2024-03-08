@@ -6,12 +6,16 @@
  */
 
 
+#include "Application/Application.h"
+
 int main()
 {
-
+	/*	Make Initialize for Every thing*/
+	App_Init();
+	
 	while(1)
 	{
-
+		StateMachineUpdate();
 	}
 
 
