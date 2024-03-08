@@ -1,5 +1,6 @@
-Application/Application.o Application/Application.o:  \
- ../Application/Application.c ../Application/Application.h \
+Application/Application_program.o Application/Application_program.o:  \
+ ../Application/Application_program.c \
+  ../Application/Application_interface.h \
   ../Application/../HAL/BUTTON/BUTTON_interface.h \
   ../Application/../HAL/BUTTON/../../SERVICE/STD_TYPES.h \
   ../Application/../HAL/BUTTON/BUTTON_config.h \
@@ -13,9 +14,11 @@ Application/Application.o Application/Application.o:  \
   ../Application/../HAL/LCD/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/EXT_INT_interface.h \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
-  ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h
+  ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
+  ../Application/Application_private.h \
+  ../Application/../SERVICE/STD_TYPES.h
 
-../Application/Application.h:
+../Application/Application_interface.h:
 
 ../Application/../HAL/BUTTON/BUTTON_interface.h:
 
@@ -44,3 +47,7 @@ Application/Application.o Application/Application.o:  \
 ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h:
 
 ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h:
+
+../Application/Application_private.h:
+
+../Application/../SERVICE/STD_TYPES.h:

@@ -1,4 +1,4 @@
-main.o main.o: ../main.c ../Application/Application.h \
+main.o main.o: ../main.c ../Application/Application_interface.h \
   ../Application/../HAL/BUTTON/BUTTON_interface.h \
   ../Application/../HAL/BUTTON/../../SERVICE/STD_TYPES.h \
   ../Application/../HAL/BUTTON/BUTTON_config.h \
@@ -14,7 +14,7 @@ main.o main.o: ../main.c ../Application/Application.h \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h
 
-../Application/Application.h:
+../Application/Application_interface.h:
 
 ../Application/../HAL/BUTTON/BUTTON_interface.h:
 

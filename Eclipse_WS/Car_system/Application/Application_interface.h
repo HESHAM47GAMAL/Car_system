@@ -1,12 +1,21 @@
-/*
- * Application.h
+/******************************************************************************
  *
- *  Created on: Mar 7, 2024
- *      Author: moham
- */
+ * Module: Application
+ *
+ * File Name: Application_interface.h
+ *
+ * Description: Header File contain function Prototype  
+ *
+ * Author: Hesham Shehata
+ *
+ *******************************************************************************/
+
 
 #ifndef APPLICATION_APPLICATION_H_
 #define APPLICATION_APPLICATION_H_
+
+
+/**************************                   INCLUDES                   **************************/
 
 #include "../HAL/BUTTON/BUTTON_interface.h"
 #include "../HAL/LED/LED_interface.h"
@@ -14,6 +23,8 @@
 
 #include "../MCAL/EXT_INT/EXT_INT_interface.h"
 
+
+/**************************                   Definitions                   **************************/
 
 
 #define Accelerate_BTN_PORT         PORTD_ID
@@ -41,6 +52,12 @@
 #define Yellow_LED_PIN              PIN6_ID
 
 
+#define BTN_Pressed_State           LOGIC_LOW
+#define BTN_Released_State          LOGIC_HIGH
+
+#define YES_Condition               LOGIC_HIGH
+#define NO_Condition                LOGIC_LOW
+
 /*
 *   @brief : this function used to initailize what will displayed in LCD and configure Buttons and Leds 
 *   @args  void
@@ -50,14 +67,7 @@
 */
 void App_Init(void);
 
-/*
-*   @brief : this function used to initialize what will be displayed in LCD 
-*   @args  void
-*   @return: no return
-*   @synchronous / Asynchronous : Synchronous
-*   @ Reentrant / Non Reentrant : Reentrant
-*/
-void DashBoard_Init(void);
+
 
 void StateMachineUpdate(void);
 
