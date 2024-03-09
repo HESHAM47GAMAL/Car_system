@@ -12,6 +12,7 @@ RM := rm -rf
 -include MCAL/EXT_INT/subdir.mk
 -include HAL/LED/subdir.mk
 -include HAL/LCD/subdir.mk
+-include HAL/BUZZER/subdir.mk
 -include HAL/BUTTON/subdir.mk
 -include Application/subdir.mk
 -include subdir.mk
