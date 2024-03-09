@@ -35,13 +35,13 @@ static uint8 col_global = 0 ;
 
 void LCD_init(void)
 {
-    /*  congfigure RS LCD pin   */
+    /*  Configure RS LCD pin   */
     GPIO_SetPinDirection(LCD_RS_PORT_ID,LCD_RS_PIN_ID,OUTPUT_PIN);
     #if(OPTION_RW_PIN == READ_WRITE_LCD)
-        /*  congfigure R/W LCD pin   */
+        /*  Configure R/W LCD pin   */
         GPIO_SetPinDirection(LCD_RW_PORT_ID,LCD_RW_PIN_ID,OUTPUT_PIN);
     #endif
-    /*  congfigure E LCD pin   */
+    /*  Configure E LCD pin   */
     GPIO_SetPinDirection(LCD_E_PORT_ID,LCD_E_PIN_ID,OUTPUT_PIN);
 
     /*  Configure pins of Data with LCD     */

@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Application/Application_program.c 
+../Application/Application.c 
 
 OBJS += \
-./Application/Application_program.o 
+./Application/Application.o 
 
 C_DEPS += \
-./Application/Application_program.d 
+./Application/Application.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
