@@ -10,7 +10,7 @@
  *
  *******************************************************************************/
 
-// Gard file
+// Guard  file
 #ifndef GPIO_PRIVATE_H_
 #define GPIO_PRIVATE_H_ 
 
@@ -18,7 +18,7 @@
 #include "../../SERVICE/STD_TYPES.h"
 
 
-/**************************                   Register memmory mapped GPIO                  **************************/
+/**************************                   Register memory mapped GPIO                  **************************/
 
 /*************  Disable all internal pullup resistor 	*************/
 #define     SFIOR               (*(volatile uint8 *)(0x50)) 
