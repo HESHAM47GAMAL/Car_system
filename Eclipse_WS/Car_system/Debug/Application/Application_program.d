@@ -12,6 +12,10 @@ Application/Application_program.o Application/Application_program.o:  \
   ../Application/../HAL/LED/../../MCAL/GPIO/GPIO_interface.h \
   ../Application/../HAL/LCD/LCD_interface.h \
   ../Application/../HAL/LCD/../../SERVICE/STD_TYPES.h \
+  ../Application/../Hal/Buzzer/Buzzer_interface.h \
+  ../Application/../Hal/Buzzer/../../SERVICE/STD_TYPES.h \
+  ../Application/../Hal/Buzzer/Buzzer_config.h \
+  ../Application/../Hal/Buzzer/../../MCAL/GPIO/GPIO_interface.h \
   ../Application/../MCAL/EXT_INT/EXT_INT_interface.h \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
@@ -41,6 +45,14 @@ Application/Application_program.o Application/Application_program.o:  \
 ../Application/../HAL/LCD/LCD_interface.h:
 
 ../Application/../HAL/LCD/../../SERVICE/STD_TYPES.h:
+
+../Application/../Hal/Buzzer/Buzzer_interface.h:
+
+../Application/../Hal/Buzzer/../../SERVICE/STD_TYPES.h:
+
+../Application/../Hal/Buzzer/Buzzer_config.h:
+
+../Application/../Hal/Buzzer/../../MCAL/GPIO/GPIO_interface.h:
 
 ../Application/../MCAL/EXT_INT/EXT_INT_interface.h:
 

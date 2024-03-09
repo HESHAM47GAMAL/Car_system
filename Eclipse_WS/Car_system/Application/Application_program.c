@@ -40,6 +40,9 @@ void App_Init(void)
     /*  Intialize LCD   */
     LCD_init();
 
+    /*  Initialize Buzzer */
+    Buzzer_Init(Buzzer_PORT,Buzzer_PIN);
+
     /* Initialize Button Accelerate & ACCS & GearBox    */
     BUTTON_Init(Accelerate_BTN_PORT,Accelerate_BTN_PIN,INPUT_PIN);
     BUTTON_Init(ACCS_BTN_PORT,ACCS_BTN_PIN,INPUT_PIN);
@@ -96,24 +99,6 @@ void StateMachineUpdate(void)
 }
 
 
-void Test_B(void)
-{
-    uint8 ACCS_State_bTN = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
-    static uint8 ACCS_BTN_IsPressed = LOGIC_LOW ;
-    if(ACCS_State_bTN == LOGIC_LOW)
-    {
-        if(ACCS_BTN_IsPressed == LOGIC_LOW)
-        {
-            LED_Toggle(Green_LED_PORT,Green_LED_PIN);
-            ACCS_BTN_IsPressed = LOGIC_HIGH ;
-        }
-    }
-    else
-    {
-        ACCS_BTN_IsPressed = LOGIC_LOW ;
-    }
-
-}
 
 
 
@@ -160,6 +145,8 @@ static void Buttons_Update(void)
         /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
         if(GearBox_IsStillPressed == NO_Condition)
         {
+            /*  make buzzer pin high to give sound notify to gearbox change happen*/
+            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
 
             GearBox_IsStillPressed = YES_Condition ;
             GearBox_Current_State ++ ;
@@ -170,12 +157,17 @@ static void Buttons_Update(void)
             }
             /*  call function to update gearbox state in Dashboard*/
             DashBoard_Update_GearBox_state(GearBox_Current_State);
+
+            /*  make buzzer pin low as this give sound once when button pressed and if still pressing do nothing    */
+            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
         }
+        
     }
     else
     {
         /*  Enter this state when Button released*/
         GearBox_IsStillPressed = NO_Condition ;
+        
     }
   
 
@@ -191,15 +183,20 @@ static void Buttons_Update(void)
             /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
             if(ACCS_IsStillPressed == NO_Condition)
             {
+                /*  make buzzer pin high to give sound notify to gearbox change happen*/
+                Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+
                 ACCS_IsStillPressed = YES_Condition ;
                 if(ACCS_Currnet_state == ACCS_Disable ) 
                     ACCS_Currnet_state = ACCS_Enable;
                 else
                     ACCS_Currnet_state = ACCS_Disable;
 
-                LED_Toggle(Green_LED_PORT,Green_LED_PIN);
+                LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
                 DashBoard_Update_ACCS_State(ACCS_Currnet_state);
                 
+                /*  make buzzer pin low as this give sound once when button pressed and if still pressing do nothing    */
+                Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
             }
         }
         else
@@ -219,9 +216,13 @@ static void Buttons_Update(void)
         if(Acccelerate_BTN_State == BTN_Pressed_State)
         {
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_ON);
+            /*  make buzzer pin high to give sound and will give sound until release button  */
+            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
         }
         else
         {
+            /*  make buzzer pin low to stop sound of buzzer    */
+            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
         }
     }
@@ -253,11 +254,19 @@ static void DashBoard_Update_ACCS_State(uint8 ACCS_state)
 
 static void Braking_Button_Handling(void)
 {
+    /*  Make initial state that Button is released  */
     static uint8 Braking_BTN_State = BTN_Released_State ;
+    /*  Will Enter this condition only when press button Only (this will make failling edge)  */
     if(Braking_BTN_State == BTN_Released_State)
     {
+        /*  make buzzer pin high to give sound and will give sound until release button  */
+        Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+
+        /*  So when I release utton will make Rising Edge so I need to make setup to detect this state to turn led off  */
         INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN);
+        /*  Make update to state    */
         Braking_BTN_State = BTN_Pressed_State;
+        /*  Turn led on  */
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_ON);
 /*                Here when I press in Braking if in D mode should Disable ACCS mode                                                       */
         if(GearBox_Current_State == D_GearBox)
@@ -270,8 +279,12 @@ static void Braking_Button_Handling(void)
             DashBoard_Update_ACCS_State(ACCS_Currnet_state);
         }
     }
+    /*  Will Enter this condition only when release button Only (this will make failling edge)  */
     else if(Braking_BTN_State == BTN_Pressed_State)
     {
+        /*  make buzzer pin low to stop sound of buzzer    */
+        Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+
         INT1_init(FALLING_EDGE_TRIGGER,INPUT_PIN);
         Braking_BTN_State = BTN_Released_State;
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_OFF);

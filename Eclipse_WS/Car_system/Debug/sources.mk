@@ -21,6 +21,7 @@ C_DEPS :=
 SUBDIRS := \
 Application \
 HAL/BUTTON \
+HAL/Buzzer \
 HAL/LCD \
 HAL/LED \
 MCAL/EXT_INT \

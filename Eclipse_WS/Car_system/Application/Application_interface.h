@@ -20,11 +20,15 @@
 #include "../HAL/BUTTON/BUTTON_interface.h"
 #include "../HAL/LED/LED_interface.h"
 #include "../HAL/LCD/LCD_interface.h"
+#include "../Hal/Buzzer/Buzzer_interface.h"
 
 #include "../MCAL/EXT_INT/EXT_INT_interface.h"
 
 
 /**************************                   Definitions                   **************************/
+
+#define Buzzer_PORT             PORTC_ID
+#define Buzzer_PIN              PIN6_ID
 
 
 #define Accelerate_BTN_PORT         PORTD_ID
@@ -68,10 +72,16 @@
 void App_Init(void);
 
 
-
+/*
+*   @brief : this function used responsible for all system and handle changes in Modes 
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 void StateMachineUpdate(void);
 
-void Test_B(void);
+
 
 
 #endif /* APPLICATION_APPLICATION_H_ */
