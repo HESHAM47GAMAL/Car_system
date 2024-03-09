@@ -14,6 +14,8 @@
 #include "../SERVICE/STD_TYPES.h"
 
 /**************************                   Function Prototype                   **************************/
+
+
 /*
 *   @brief : this function used to handle All action may happen In N GearBox mode
 *   @args  void
@@ -23,6 +25,15 @@
 */
 static void Hanndle_GrearBox_N_State(void);
 
+
+/*
+*   @brief : this function used to handle All action may happen In N GearBox mode
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+static void Hanndle_GrearBox_R_State(void);
 
 
 
@@ -60,3 +71,5 @@ static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
 
 
 static void Braking_Button_Handling(void);
+
+

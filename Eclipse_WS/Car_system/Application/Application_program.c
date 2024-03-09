@@ -91,6 +91,7 @@ static void DashBoard_Init(void)
 void StateMachineUpdate(void)
 {
     Hanndle_GrearBox_N_State();
+    Hanndle_GrearBox_R_State();
     Buttons_Update();
 }
 
@@ -129,6 +130,22 @@ static void Hanndle_GrearBox_N_State(void)
     }
    
 }
+
+
+static void Hanndle_GrearBox_R_State(void)
+{
+    if(GearBox_Current_State == R_GearBox)
+    {
+        /*  Disable ACCS if Enabled  */
+        ACCS_Currnet_state = ACCS_Disable;
+        /*  Turn off led of it was turned on  */
+        LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+        /*  Update LCD with new change*/
+        DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+    }
+}
+
+
 
 static void Buttons_Update(void)
 {   
@@ -242,6 +259,16 @@ static void Braking_Button_Handling(void)
         INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN);
         Braking_BTN_State = BTN_Pressed_State;
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_ON);
+/*                Here when I press in Braking if in D mode should Disable ACCS mode                                                       */
+        if(GearBox_Current_State == D_GearBox)
+        {
+            /*  Disable ACCS if Enabled  */
+            ACCS_Currnet_state = ACCS_Disable;
+            /*  Turn off led of it was turned on  */
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+            /*  Update LCD with new change*/
+            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+        }
     }
     else if(Braking_BTN_State == BTN_Pressed_State)
     {
