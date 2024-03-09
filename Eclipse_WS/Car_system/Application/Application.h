@@ -18,8 +18,8 @@
 #define BRK_BTN_PORT         PORTD_ID
 #define BRK_BTN_PIN          PIN6_ID
 
-#define CCS_BTN_PORT         PORTD_ID
-#define CCS_BTN_PIN          PIN5_ID
+#define ACCS_BTN_PORT        PORTD_ID
+#define ACCS_BTN_PIN         PIN5_ID
 
 #define GBX_BTN_PORT         PORTD_ID
 #define GBX_BTN_PIN          PIN3_ID
@@ -53,12 +53,13 @@
 /*   FUNCTION PROTOTYPES   */
 /*--------------------------------------------------------------------------------------------*/
 void A_APPLICATION_VOID_ACCELERATE(void);
-void A_APPLICATION_VOID_BRAKE(void);
-void A_APPLICATION_VOID_CCS(void);
+//void A_APPLICATION_VOID_CCS(void);
 void init(void);
 void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void);
 void A_APPLICATION_VOID_LCD_STATICS(void);
-void A_APPLICATION_VOID_CCS_CHANGE(void);
+void A_APPLICATION_VOID_ACCS_CHANGE(void);
+void A_APPLICATION_VOID_BUZZER_BEEP(uint8,uint8);
+void A_APPLICATION_VOID_LCD_DISTANCE(void);
 
 
 
