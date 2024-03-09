@@ -6,7 +6,9 @@ main.o main.o: ../main.c ../SERVICE/COMMON_MACROS.h \
   ../HAL/BUTTON/../../MCAL/GPIO/../../SERVICE/STD_TYPES.h \
   ../HAL/LED/LED_interface.h ../HAL/LED/../../SERVICE/STD_TYPES.h \
   ../HAL/LED/LED_config.h ../HAL/LED/../../MCAL/GPIO/GPIO_interface.h \
-  ../MCAL/GPIO/GPIO_interface.h
+  ../MCAL/GPIO/GPIO_interface.h ../HAL/BUZZER/Buzzer_Interface.h \
+  ../HAL/BUZZER/../../SERVICE/STD_TYPES.h \
+  ../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h
 
 ../SERVICE/COMMON_MACROS.h:
 
@@ -33,3 +35,9 @@ main.o main.o: ../main.c ../SERVICE/COMMON_MACROS.h \
 ../HAL/LED/../../MCAL/GPIO/GPIO_interface.h:
 
 ../MCAL/GPIO/GPIO_interface.h:
+
+../HAL/BUZZER/Buzzer_Interface.h:
+
+../HAL/BUZZER/../../SERVICE/STD_TYPES.h:
+
+../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h:

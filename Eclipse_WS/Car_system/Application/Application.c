@@ -11,6 +11,7 @@
 #include "../HAL/LED/LED_interface.h"
 #include "../MCAL/GPIO/GPIO_interface.h"
 #include "../HAL/LCD/LCD_interface.h"
+#include "../HAL/BUZZER/Buzzer_Interface.h"
 #include "Application.h"
 
 enum GEARBOX_STATE {
@@ -54,6 +55,7 @@ void A_APPLICATION_VOID_ACCELERATE(void){
 	switch (temp) {
 				case BTN_Pressed_State:
 					LED_OnOffPositiveLogic(BLU_LED_PORT,BLU_LED_PIN,LOGIC_HIGH);
+
 					break;
 				case BTN_Released_State:
 					LED_OnOffPositiveLogic(BLU_LED_PORT,BLU_LED_PIN,LOGIC_LOW);
@@ -105,9 +107,6 @@ void A_APPLICATION_VOID_CCS(void){
 void A_APPLICATION_VOID_LCD_STATICS(void){
 	LCD_MoveCursor(0,0);
 	LCD_DisplayString((uint8*)"ACCS :");
-
-	LCD_MoveCursor(0,11);
-	LCD_DisplayString((uint8*)"CCS : ");
 
 	LCD_MoveCursor(1,0);
 	LCD_DisplayString((uint8*)"Gear (R,N,D) :  ");
@@ -185,11 +184,11 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 		}
 		switch (STATE2) {
 		case E_CCS_OFF:
-			LCD_MoveCursor(0,17);
+			LCD_MoveCursor(0,7);
 			LCD_DisplayString((uint8*)"OFF");
 			break;
 		case E_CCS_ON:
-			LCD_MoveCursor(0,17);
+			LCD_MoveCursor(0,7);
 			LCD_DisplayString((uint8*)"ON ");
 			break;
 		default: STATE2 = E_CCS_OFF;
@@ -197,3 +196,29 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 	}
 
 	}
+
+	void A_APPLICATION_VOID_BUZZER_BEEP(void)
+	{
+		uint8 TEMP;
+		TEMP = BUTTON_GetValue(ACL_BTN_PORT,ACL_BTN_PIN);
+		//uint8 static STATE3 = E_CCS_OFF;
+		uint8 static BTN_STATE = BTN_Pressed_State;
+		if (TEMP == BTN_Pressed_State) {
+
+			if (BTN_STATE == BTN_Pressed_State) {
+				BTN_STATE = BTN_Released_State;
+				H_Buzzer_Void_BuzzerOnce();
+
+			}
+		}
+		else{
+			BTN_STATE = BTN_Pressed_State;
+			//reserved
+		}
+
+	}
+
+
+
+
+

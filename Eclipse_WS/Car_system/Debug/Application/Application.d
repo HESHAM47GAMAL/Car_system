@@ -13,6 +13,9 @@ Application/Application.o Application/Application.o:  \
   ../Application/../MCAL/GPIO/GPIO_interface.h \
   ../Application/../HAL/LCD/LCD_interface.h \
   ../Application/../HAL/LCD/../../SERVICE/STD_TYPES.h \
+  ../Application/../HAL/BUZZER/Buzzer_Interface.h \
+  ../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h \
+  ../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h \
   ../Application/Application.h
 
 ../Application/../SERVICE/COMMON_MACROS.h:
@@ -42,5 +45,11 @@ Application/Application.o Application/Application.o:  \
 ../Application/../HAL/LCD/LCD_interface.h:
 
 ../Application/../HAL/LCD/../../SERVICE/STD_TYPES.h:
+
+../Application/../HAL/BUZZER/Buzzer_Interface.h:
+
+../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h:
+
+../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h:
 
 ../Application/Application.h:

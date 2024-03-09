@@ -12,8 +12,10 @@
 #include "HAL/BUTTON/BUTTON_interface.h"
 #include "HAL/LED/LED_interface.h"
 #include "MCAL/GPIO/GPIO_interface.h"
+#include "HAL/BUZZER/Buzzer_Interface.h"
 
 void A_APPLICATION_VOID_CCS_CHANGE(void);
+
 
 
 
@@ -29,12 +31,14 @@ int main()
 
 	init();
 	A_APPLICATION_VOID_LCD_STATICS();
+	H_Buzzer_Void_BuzzerInit();
 	while(1)
 	{
 		A_APPLICATION_VOID_ACCELERATE();
 		A_APPLICATION_VOID_BRAKES();
 		A_APPLICATION_VOID_CCS_CHANGE();
 		A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE();
+		A_APPLICATION_VOID_BUZZER_BEEP();
 
 
 
