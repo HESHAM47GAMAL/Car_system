@@ -238,6 +238,9 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 
 		LCD_MoveCursor(1,15);
 		LCD_DisplayString((uint8*)" R");
+
+		LCD_MoveCursor(0,7);
+		LCD_DisplayString((uint8*)"OFF");
 		A_APPLICATION_VOID_LCD_DISTANCE();
 		A_APPLICATION_VOID_BUZZER_BEEP(GBX_BTN_PORT,GBX_BTN_PIN);
 
