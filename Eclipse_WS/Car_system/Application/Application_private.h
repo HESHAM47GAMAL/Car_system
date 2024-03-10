@@ -113,3 +113,7 @@ static void DashBoard_DistanceShow(void);
 static void DashBoard_DistanceHide(void);
 
 static uint8 ACCS_CatchDistance(void);
+
+
+
+void tessst (void);

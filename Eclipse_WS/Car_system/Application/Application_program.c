@@ -198,19 +198,20 @@ static void Buttons_Update(void)
                 Buzzer_NotifySound();
 
                 ACCS_IsStillPressed = YES_Condition ;
+                LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
                 if(ACCS_Currnet_state == ACCS_Disable ) 
                 {
                     ACCS_Currnet_state = ACCS_Enable;
+                    DashBoard_Update_ACCS_State(ACCS_Currnet_state);
                     DashBoard_DistanceShow();
                 }
                 else
                 {
                     ACCS_Currnet_state = ACCS_Disable;
+                    DashBoard_Update_ACCS_State(ACCS_Currnet_state);
                     DashBoard_DistanceHide();
                 }
 
-                LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
-                DashBoard_Update_ACCS_State(ACCS_Currnet_state);
  
             }
         }
@@ -292,18 +293,23 @@ static void Braking_Button_Handling(void)
 *   I face very big problem as this Button has two scienaros (very short press and normal or long press )
 *   In very short press I will face problem if I Enable ACCS as there are if condition will be true and this code will take time for execute (failing edge followed by rising edge ) and code in if condition execution time greater than time of(convert from failling edge to rising edge)
 */
-        if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
-        {
-            
-            /*  Disable ACCS if Enabled  */
-            ACCS_Currnet_state = ACCS_Disable;
-            /*  Turn off led of it was turned on  */
-            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
-            /*  Update LCD with new change*/
-            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+        // if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
+        // {
+        //     /*	Enable Global Interrupt  */
+	    //     sei();
 
-            DashBoard_DistanceHide();
-        }
+        //     /*  Disable ACCS if Enabled  */
+        //     ACCS_Currnet_state = ACCS_Disable;
+        //     /*  Turn off led of it was turned on  */
+        //     LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+        //     /*  Update LCD with new change*/
+        //     DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+
+        //     DashBoard_DistanceHide();
+
+
+        // }
+        tessst();
     }
     /*  Will Enter this condition only when release button Only (this will make failling edge)  */
     else if(Braking_BTN_State == BTN_Pressed_State)
@@ -350,3 +356,23 @@ static void DashBoard_DistanceHide(void)
     LCD_DisplayString((const uint8 * )"                 ");
 }
 
+
+void tessst (void)
+{
+            if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
+        {
+            /*	Enable Global Interrupt  */
+	        sei();
+
+            /*  Disable ACCS if Enabled  */
+            ACCS_Currnet_state = ACCS_Disable;
+            /*  Turn off led of it was turned on  */
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+            /*  Update LCD with new change*/
+            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+
+            DashBoard_DistanceHide();
+
+
+        }
+}

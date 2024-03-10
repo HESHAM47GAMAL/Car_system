@@ -3,33 +3,33 @@ Car_system.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000038b0  00000000  00000000  00000094  2**1
+  0 .text         000038cc  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000076  00800060  000038b0  00003944  2**0
+  1 .data         00000076  00800060  000038cc  00003960  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000000f  008000d6  008000d6  000039ba  2**0
+  2 .bss          0000000f  008000d6  008000d6  000039d6  2**0
                   ALLOC
-  3 .stab         00004290  00000000  00000000  000039bc  2**2
+  3 .stab         000042d8  00000000  00000000  000039d8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00002651  00000000  00000000  00007c4c  2**0
+  4 .stabstr      00002660  00000000  00000000  00007cb0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000140  00000000  00000000  0000a29d  2**0
+  5 .debug_aranges 00000140  00000000  00000000  0000a310  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000170  00000000  00000000  0000a3dd  2**0
+  6 .debug_pubnames 00000170  00000000  00000000  0000a450  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00001c49  00000000  00000000  0000a54d  2**0
+  7 .debug_info   00001c49  00000000  00000000  0000a5c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000eeb  00000000  00000000  0000c196  2**0
+  8 .debug_abbrev 00000eeb  00000000  00000000  0000c209  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000dad  00000000  00000000  0000d081  2**0
+  9 .debug_line   00000dad  00000000  00000000  0000d0f4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000160  00000000  00000000  0000de30  2**2
+ 10 .debug_frame  00000160  00000000  00000000  0000dea4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    0000028d  00000000  00000000  0000df90  2**0
+ 11 .debug_str    0000028d  00000000  00000000  0000e004  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000007ce  00000000  00000000  0000e21d  2**0
+ 12 .debug_loc    000007ce  00000000  00000000  0000e291  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000050  00000000  00000000  0000e9eb  2**0
+ 13 .debug_ranges 00000050  00000000  00000000  0000ea5f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -69,7 +69,7 @@ Disassembly of section .text:
       60:	10 e0       	ldi	r17, 0x00	; 0
       62:	a0 e6       	ldi	r26, 0x60	; 96
       64:	b0 e0       	ldi	r27, 0x00	; 0
-      66:	e0 eb       	ldi	r30, 0xB0	; 176
+      66:	ec ec       	ldi	r30, 0xCC	; 204
       68:	f8 e3       	ldi	r31, 0x38	; 56
       6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
@@ -95,8 +95,8 @@ Disassembly of section .text:
       80:	a5 3e       	cpi	r26, 0xE5	; 229
       82:	b1 07       	cpc	r27, r17
       84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-      86:	0e 94 d1 1b 	call	0x37a2	; 0x37a2 <main>
-      8a:	0c 94 56 1c 	jmp	0x38ac	; 0x38ac <_exit>
+      86:	0e 94 df 1b 	call	0x37be	; 0x37be <main>
+      8a:	0c 94 64 1c 	jmp	0x38c8	; 0x38c8 <_exit>
 
 0000008e <__bad_interrupt>:
       8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -148,7 +148,7 @@ Disassembly of section .text:
       ec:	b0 e0       	ldi	r27, 0x00	; 0
       ee:	eb e7       	ldi	r30, 0x7B	; 123
       f0:	f0 e0       	ldi	r31, 0x00	; 0
-      f2:	0c 94 da 1b 	jmp	0x37b4	; 0x37b4 <__prologue_saves__>
+      f2:	0c 94 e8 1b 	jmp	0x37d0	; 0x37d0 <__prologue_saves__>
       f6:	dc 01       	movw	r26, r24
       f8:	2b 01       	movw	r4, r22
       fa:	fa 01       	movw	r30, r20
@@ -473,14 +473,14 @@ Disassembly of section .text:
      378:	cd b7       	in	r28, 0x3d	; 61
      37a:	de b7       	in	r29, 0x3e	; 62
      37c:	e2 e1       	ldi	r30, 0x12	; 18
-     37e:	0c 94 f6 1b 	jmp	0x37ec	; 0x37ec <__epilogue_restores__>
+     37e:	0c 94 04 1c 	jmp	0x3808	; 0x3808 <__epilogue_restores__>
 
 00000382 <__subsf3>:
      382:	a0 e2       	ldi	r26, 0x20	; 32
      384:	b0 e0       	ldi	r27, 0x00	; 0
      386:	e7 ec       	ldi	r30, 0xC7	; 199
      388:	f1 e0       	ldi	r31, 0x01	; 1
-     38a:	0c 94 e6 1b 	jmp	0x37cc	; 0x37cc <__prologue_saves__+0x18>
+     38a:	0c 94 f4 1b 	jmp	0x37e8	; 0x37e8 <__prologue_saves__+0x18>
      38e:	69 83       	std	Y+1, r22	; 0x01
      390:	7a 83       	std	Y+2, r23	; 0x02
      392:	8b 83       	std	Y+3, r24	; 0x03
@@ -518,14 +518,14 @@ Disassembly of section .text:
      3d8:	0e 94 fd 03 	call	0x7fa	; 0x7fa <__pack_f>
      3dc:	a0 96       	adiw	r28, 0x20	; 32
      3de:	e6 e0       	ldi	r30, 0x06	; 6
-     3e0:	0c 94 02 1c 	jmp	0x3804	; 0x3804 <__epilogue_restores__+0x18>
+     3e0:	0c 94 10 1c 	jmp	0x3820	; 0x3820 <__epilogue_restores__+0x18>
 
 000003e4 <__addsf3>:
      3e4:	a0 e2       	ldi	r26, 0x20	; 32
      3e6:	b0 e0       	ldi	r27, 0x00	; 0
      3e8:	e8 ef       	ldi	r30, 0xF8	; 248
      3ea:	f1 e0       	ldi	r31, 0x01	; 1
-     3ec:	0c 94 e6 1b 	jmp	0x37cc	; 0x37cc <__prologue_saves__+0x18>
+     3ec:	0c 94 f4 1b 	jmp	0x37e8	; 0x37e8 <__prologue_saves__+0x18>
      3f0:	69 83       	std	Y+1, r22	; 0x01
      3f2:	7a 83       	std	Y+2, r23	; 0x02
      3f4:	8b 83       	std	Y+3, r24	; 0x03
@@ -559,14 +559,14 @@ Disassembly of section .text:
      432:	0e 94 fd 03 	call	0x7fa	; 0x7fa <__pack_f>
      436:	a0 96       	adiw	r28, 0x20	; 32
      438:	e6 e0       	ldi	r30, 0x06	; 6
-     43a:	0c 94 02 1c 	jmp	0x3804	; 0x3804 <__epilogue_restores__+0x18>
+     43a:	0c 94 10 1c 	jmp	0x3820	; 0x3820 <__epilogue_restores__+0x18>
 
 0000043e <__mulsf3>:
      43e:	a0 e2       	ldi	r26, 0x20	; 32
      440:	b0 e0       	ldi	r27, 0x00	; 0
      442:	e5 e2       	ldi	r30, 0x25	; 37
      444:	f2 e0       	ldi	r31, 0x02	; 2
-     446:	0c 94 da 1b 	jmp	0x37b4	; 0x37b4 <__prologue_saves__>
+     446:	0c 94 e8 1b 	jmp	0x37d0	; 0x37d0 <__prologue_saves__>
      44a:	69 83       	std	Y+1, r22	; 0x01
      44c:	7a 83       	std	Y+2, r23	; 0x02
      44e:	8b 83       	std	Y+3, r24	; 0x03
@@ -806,14 +806,14 @@ Disassembly of section .text:
      626:	0e 94 fd 03 	call	0x7fa	; 0x7fa <__pack_f>
      62a:	a0 96       	adiw	r28, 0x20	; 32
      62c:	e2 e1       	ldi	r30, 0x12	; 18
-     62e:	0c 94 f6 1b 	jmp	0x37ec	; 0x37ec <__epilogue_restores__>
+     62e:	0c 94 04 1c 	jmp	0x3808	; 0x3808 <__epilogue_restores__>
 
 00000632 <__gtsf2>:
      632:	a8 e1       	ldi	r26, 0x18	; 24
      634:	b0 e0       	ldi	r27, 0x00	; 0
      636:	ef e1       	ldi	r30, 0x1F	; 31
      638:	f3 e0       	ldi	r31, 0x03	; 3
-     63a:	0c 94 e6 1b 	jmp	0x37cc	; 0x37cc <__prologue_saves__+0x18>
+     63a:	0c 94 f4 1b 	jmp	0x37e8	; 0x37e8 <__prologue_saves__+0x18>
      63e:	69 83       	std	Y+1, r22	; 0x01
      640:	7a 83       	std	Y+2, r23	; 0x02
      642:	8b 83       	std	Y+3, r24	; 0x03
@@ -851,14 +851,14 @@ Disassembly of section .text:
      688:	8f ef       	ldi	r24, 0xFF	; 255
      68a:	68 96       	adiw	r28, 0x18	; 24
      68c:	e6 e0       	ldi	r30, 0x06	; 6
-     68e:	0c 94 02 1c 	jmp	0x3804	; 0x3804 <__epilogue_restores__+0x18>
+     68e:	0c 94 10 1c 	jmp	0x3820	; 0x3820 <__epilogue_restores__+0x18>
 
 00000692 <__gesf2>:
      692:	a8 e1       	ldi	r26, 0x18	; 24
      694:	b0 e0       	ldi	r27, 0x00	; 0
      696:	ef e4       	ldi	r30, 0x4F	; 79
      698:	f3 e0       	ldi	r31, 0x03	; 3
-     69a:	0c 94 e6 1b 	jmp	0x37cc	; 0x37cc <__prologue_saves__+0x18>
+     69a:	0c 94 f4 1b 	jmp	0x37e8	; 0x37e8 <__prologue_saves__+0x18>
      69e:	69 83       	std	Y+1, r22	; 0x01
      6a0:	7a 83       	std	Y+2, r23	; 0x02
      6a2:	8b 83       	std	Y+3, r24	; 0x03
@@ -896,14 +896,14 @@ Disassembly of section .text:
      6e8:	8f ef       	ldi	r24, 0xFF	; 255
      6ea:	68 96       	adiw	r28, 0x18	; 24
      6ec:	e6 e0       	ldi	r30, 0x06	; 6
-     6ee:	0c 94 02 1c 	jmp	0x3804	; 0x3804 <__epilogue_restores__+0x18>
+     6ee:	0c 94 10 1c 	jmp	0x3820	; 0x3820 <__epilogue_restores__+0x18>
 
 000006f2 <__ltsf2>:
      6f2:	a8 e1       	ldi	r26, 0x18	; 24
      6f4:	b0 e0       	ldi	r27, 0x00	; 0
      6f6:	ef e7       	ldi	r30, 0x7F	; 127
      6f8:	f3 e0       	ldi	r31, 0x03	; 3
-     6fa:	0c 94 e6 1b 	jmp	0x37cc	; 0x37cc <__prologue_saves__+0x18>
+     6fa:	0c 94 f4 1b 	jmp	0x37e8	; 0x37e8 <__prologue_saves__+0x18>
      6fe:	69 83       	std	Y+1, r22	; 0x01
      700:	7a 83       	std	Y+2, r23	; 0x02
      702:	8b 83       	std	Y+3, r24	; 0x03
@@ -941,14 +941,14 @@ Disassembly of section .text:
      748:	81 e0       	ldi	r24, 0x01	; 1
      74a:	68 96       	adiw	r28, 0x18	; 24
      74c:	e6 e0       	ldi	r30, 0x06	; 6
-     74e:	0c 94 02 1c 	jmp	0x3804	; 0x3804 <__epilogue_restores__+0x18>
+     74e:	0c 94 10 1c 	jmp	0x3820	; 0x3820 <__epilogue_restores__+0x18>
 
 00000752 <__fixsfsi>:
      752:	ac e0       	ldi	r26, 0x0C	; 12
      754:	b0 e0       	ldi	r27, 0x00	; 0
      756:	ef ea       	ldi	r30, 0xAF	; 175
      758:	f3 e0       	ldi	r31, 0x03	; 3
-     75a:	0c 94 ea 1b 	jmp	0x37d4	; 0x37d4 <__prologue_saves__+0x20>
+     75a:	0c 94 f8 1b 	jmp	0x37f0	; 0x37f0 <__prologue_saves__+0x20>
      75e:	69 83       	std	Y+1, r22	; 0x01
      760:	7a 83       	std	Y+2, r23	; 0x02
      762:	8b 83       	std	Y+3, r24	; 0x03
@@ -1024,7 +1024,7 @@ Disassembly of section .text:
      7f0:	ca 01       	movw	r24, r20
      7f2:	2c 96       	adiw	r28, 0x0c	; 12
      7f4:	e2 e0       	ldi	r30, 0x02	; 2
-     7f6:	0c 94 06 1c 	jmp	0x380c	; 0x380c <__epilogue_restores__+0x20>
+     7f6:	0c 94 14 1c 	jmp	0x3828	; 0x3828 <__epilogue_restores__+0x20>
 
 000007fa <__pack_f>:
      7fa:	df 92       	push	r13
@@ -7714,7 +7714,7 @@ void LCD_intToString(uint32 data)
     3232:	b9 01       	movw	r22, r18
     3234:	4a e0       	ldi	r20, 0x0A	; 10
     3236:	50 e0       	ldi	r21, 0x00	; 0
-    3238:	0e 94 11 1c 	call	0x3822	; 0x3822 <itoa>
+    3238:	0e 94 1f 1c 	call	0x383e	; 0x383e <itoa>
 	 LCD_DisplayString( (uint8_t *)string_buff);
     323c:	ce 01       	movw	r24, r28
     323e:	01 96       	adiw	r24, 0x01	; 1
@@ -7969,7 +7969,7 @@ void App_Init(void)
     3398:	0e 94 48 0d 	call	0x1a90	; 0x1a90 <INT1_init>
     /*  Set call back function  */
     INT1_SetCallBack(Braking_Button_Handling);
-    339c:	86 e5       	ldi	r24, 0x56	; 86
+    339c:	8a e5       	ldi	r24, 0x5A	; 90
     339e:	9b e1       	ldi	r25, 0x1B	; 27
     33a0:	0e 94 02 0d 	call	0x1a04	; 0x1a04 <INT1_SetCallBack>
 
@@ -8019,7 +8019,7 @@ void App_Init(void)
 
     /*  Set callback function that will called when Timeout happen to turn of buzzer and handle anything another    */
     Timer0_SetCallBack(Buzzer_timeOutOff);
-    33f0:	85 ea       	ldi	r24, 0xA5	; 165
+    33f0:	86 e9       	ldi	r24, 0x96	; 150
     33f2:	9b e1       	ldi	r25, 0x1B	; 27
     33f4:	0e 94 a3 05 	call	0xb46	; 0xb46 <Timer0_SetCallBack>
 
@@ -8128,10 +8128,10 @@ static void Hanndle_GrearBox_N_State(void)
             /*  Update LCD with new change*/
             DashBoard_Update_ACCS_State(ACCS_Currnet_state);
     3480:	80 91 e1 00 	lds	r24, 0x00E1
-    3484:	0e 94 2b 1b 	call	0x3656	; 0x3656 <DashBoard_Update_ACCS_State>
+    3484:	0e 94 2f 1b 	call	0x365e	; 0x365e <DashBoard_Update_ACCS_State>
             
             DashBoard_DistanceHide();
-    3488:	0e 94 c2 1b 	call	0x3784	; 0x3784 <DashBoard_DistanceHide>
+    3488:	0e 94 b3 1b 	call	0x3766	; 0x3766 <DashBoard_DistanceHide>
 
         }
     }
@@ -8172,10 +8172,10 @@ static void Hanndle_GrearBox_R_State(void)
             /*  Update LCD with new change*/
             DashBoard_Update_ACCS_State(ACCS_Currnet_state);
     34b8:	80 91 e1 00 	lds	r24, 0x00E1
-    34bc:	0e 94 2b 1b 	call	0x3656	; 0x3656 <DashBoard_Update_ACCS_State>
+    34bc:	0e 94 2f 1b 	call	0x365e	; 0x365e <DashBoard_Update_ACCS_State>
             
             DashBoard_DistanceHide();
-    34c0:	0e 94 c2 1b 	call	0x3784	; 0x3784 <DashBoard_DistanceHide>
+    34c0:	0e 94 b3 1b 	call	0x3766	; 0x3766 <DashBoard_DistanceHide>
 
         }
     }
@@ -8218,7 +8218,7 @@ static void Buttons_Update(void)
     34ec:	b9 f4       	brne	.+46     	; 0x351c <Buttons_Update+0x52>
         {
             Buzzer_NotifySound();
-    34ee:	0e 94 94 1b 	call	0x3728	; 0x3728 <Buzzer_NotifySound>
+    34ee:	0e 94 85 1b 	call	0x370a	; 0x370a <Buzzer_NotifySound>
 
 
             GearBox_IsStillPressed = YES_Condition ;
@@ -8240,7 +8240,7 @@ static void Buttons_Update(void)
             /*  call function to update gearbox state in Dashboard*/
             DashBoard_Update_GearBox_state(GearBox_Current_State);
     350e:	80 91 e0 00 	lds	r24, 0x00E0
-    3512:	0e 94 e8 1a 	call	0x35d0	; 0x35d0 <DashBoard_Update_GearBox_state>
+    3512:	0e 94 ec 1a 	call	0x35d8	; 0x35d8 <DashBoard_Update_GearBox_state>
     3516:	02 c0       	rjmp	.+4      	; 0x351c <Buttons_Update+0x52>
         
     }
@@ -8256,7 +8256,7 @@ static void Buttons_Update(void)
     if(GearBox_Current_State == D_GearBox)
     351c:	80 91 e0 00 	lds	r24, 0x00E0
     3520:	81 30       	cpi	r24, 0x01	; 1
-    3522:	51 f5       	brne	.+84     	; 0x3578 <Buttons_Update+0xae>
+    3522:	71 f5       	brne	.+92     	; 0x3580 <Buttons_Update+0xb6>
     {
         /*  This variable used to carry if button is still pressed after last pressed as any action taken once with first step and if still press nothing happen    */
         static uint8 ACCS_IsStillPressed = NO_Condition;
@@ -8270,395 +8270,399 @@ static void Buttons_Update(void)
         if(ACCS_BTN_State == BTN_Pressed_State)
     352e:	8a 81       	ldd	r24, Y+2	; 0x02
     3530:	88 23       	and	r24, r24
-    3532:	01 f5       	brne	.+64     	; 0x3574 <Buttons_Update+0xaa>
+    3532:	21 f5       	brne	.+72     	; 0x357c <Buttons_Update+0xb2>
         {
             /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
             if(ACCS_IsStillPressed == NO_Condition)
     3534:	80 91 e3 00 	lds	r24, 0x00E3
     3538:	88 23       	and	r24, r24
-    353a:	f1 f4       	brne	.+60     	; 0x3578 <Buttons_Update+0xae>
+    353a:	11 f5       	brne	.+68     	; 0x3580 <Buttons_Update+0xb6>
             {
                 Buzzer_NotifySound();
-    353c:	0e 94 94 1b 	call	0x3728	; 0x3728 <Buzzer_NotifySound>
+    353c:	0e 94 85 1b 	call	0x370a	; 0x370a <Buzzer_NotifySound>
 
                 ACCS_IsStillPressed = YES_Condition ;
     3540:	81 e0       	ldi	r24, 0x01	; 1
     3542:	80 93 e3 00 	sts	0x00E3, r24
+                LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
+    3546:	80 e0       	ldi	r24, 0x00	; 0
+    3548:	64 e0       	ldi	r22, 0x04	; 4
+    354a:	0e 94 18 0e 	call	0x1c30	; 0x1c30 <LED_Toggle>
                 if(ACCS_Currnet_state == ACCS_Disable ) 
-    3546:	80 91 e1 00 	lds	r24, 0x00E1
-    354a:	88 23       	and	r24, r24
-    354c:	31 f4       	brne	.+12     	; 0x355a <Buttons_Update+0x90>
+    354e:	80 91 e1 00 	lds	r24, 0x00E1
+    3552:	88 23       	and	r24, r24
+    3554:	51 f4       	brne	.+20     	; 0x356a <Buttons_Update+0xa0>
                 {
                     ACCS_Currnet_state = ACCS_Enable;
-    354e:	81 e0       	ldi	r24, 0x01	; 1
-    3550:	80 93 e1 00 	sts	0x00E1, r24
+    3556:	81 e0       	ldi	r24, 0x01	; 1
+    3558:	80 93 e1 00 	sts	0x00E1, r24
+                    DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+    355c:	80 91 e1 00 	lds	r24, 0x00E1
+    3560:	0e 94 2f 1b 	call	0x365e	; 0x365e <DashBoard_Update_ACCS_State>
                     DashBoard_DistanceShow();
-    3554:	0e 94 b3 1b 	call	0x3766	; 0x3766 <DashBoard_DistanceShow>
-    3558:	04 c0       	rjmp	.+8      	; 0x3562 <Buttons_Update+0x98>
+    3564:	0e 94 a4 1b 	call	0x3748	; 0x3748 <DashBoard_DistanceShow>
+    3568:	0b c0       	rjmp	.+22     	; 0x3580 <Buttons_Update+0xb6>
                 }
                 else
                 {
                     ACCS_Currnet_state = ACCS_Disable;
-    355a:	10 92 e1 00 	sts	0x00E1, r1
+    356a:	10 92 e1 00 	sts	0x00E1, r1
+                    DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+    356e:	80 91 e1 00 	lds	r24, 0x00E1
+    3572:	0e 94 2f 1b 	call	0x365e	; 0x365e <DashBoard_Update_ACCS_State>
                     DashBoard_DistanceHide();
-    355e:	0e 94 c2 1b 	call	0x3784	; 0x3784 <DashBoard_DistanceHide>
-                }
-
-                LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
-    3562:	80 e0       	ldi	r24, 0x00	; 0
-    3564:	64 e0       	ldi	r22, 0x04	; 4
-    3566:	0e 94 18 0e 	call	0x1c30	; 0x1c30 <LED_Toggle>
-                DashBoard_Update_ACCS_State(ACCS_Currnet_state);
-    356a:	80 91 e1 00 	lds	r24, 0x00E1
-    356e:	0e 94 2b 1b 	call	0x3656	; 0x3656 <DashBoard_Update_ACCS_State>
-    3572:	02 c0       	rjmp	.+4      	; 0x3578 <Buttons_Update+0xae>
+    3576:	0e 94 b3 1b 	call	0x3766	; 0x3766 <DashBoard_DistanceHide>
+    357a:	02 c0       	rjmp	.+4      	; 0x3580 <Buttons_Update+0xb6>
             }
         }
         else
         {
             /*  Enter this state when Button released*/
             ACCS_IsStillPressed = NO_Condition ;
-    3574:	10 92 e3 00 	sts	0x00E3, r1
+    357c:	10 92 e3 00 	sts	0x00E3, r1
         }
     }
 
     if((GearBox_Current_State == D_GearBox) || (GearBox_Current_State == R_GearBox))
-    3578:	80 91 e0 00 	lds	r24, 0x00E0
-    357c:	81 30       	cpi	r24, 0x01	; 1
-    357e:	21 f0       	breq	.+8      	; 0x3588 <Buttons_Update+0xbe>
     3580:	80 91 e0 00 	lds	r24, 0x00E0
-    3584:	82 30       	cpi	r24, 0x02	; 2
-    3586:	f1 f4       	brne	.+60     	; 0x35c4 <Buttons_Update+0xfa>
+    3584:	81 30       	cpi	r24, 0x01	; 1
+    3586:	21 f0       	breq	.+8      	; 0x3590 <Buttons_Update+0xc6>
+    3588:	80 91 e0 00 	lds	r24, 0x00E0
+    358c:	82 30       	cpi	r24, 0x02	; 2
+    358e:	f1 f4       	brne	.+60     	; 0x35cc <Buttons_Update+0x102>
     {
         /*  This variable used to carry if button is still pressed after last pressed as give buzzer sound only once at the begin of press    */
         static uint8 Acccelerate_IsStillPressed = NO_Condition;
         /*  Take current state for button  to check if still pressed*/
         uint8 Acccelerate_BTN_State = BUTTON_GetValue(Accelerate_BTN_PORT,Accelerate_BTN_PIN);
-    3588:	83 e0       	ldi	r24, 0x03	; 3
-    358a:	67 e0       	ldi	r22, 0x07	; 7
-    358c:	0e 94 a0 19 	call	0x3340	; 0x3340 <BUTTON_GetValue>
-    3590:	89 83       	std	Y+1, r24	; 0x01
+    3590:	83 e0       	ldi	r24, 0x03	; 3
+    3592:	67 e0       	ldi	r22, 0x07	; 7
+    3594:	0e 94 a0 19 	call	0x3340	; 0x3340 <BUTTON_GetValue>
+    3598:	89 83       	std	Y+1, r24	; 0x01
         
         if(Acccelerate_BTN_State == BTN_Pressed_State)
-    3592:	89 81       	ldd	r24, Y+1	; 0x01
-    3594:	88 23       	and	r24, r24
-    3596:	79 f4       	brne	.+30     	; 0x35b6 <Buttons_Update+0xec>
+    359a:	89 81       	ldd	r24, Y+1	; 0x01
+    359c:	88 23       	and	r24, r24
+    359e:	79 f4       	brne	.+30     	; 0x35be <Buttons_Update+0xf4>
         {
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_ON);
-    3598:	80 e0       	ldi	r24, 0x00	; 0
-    359a:	65 e0       	ldi	r22, 0x05	; 5
-    359c:	41 e0       	ldi	r20, 0x01	; 1
-    359e:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
+    35a0:	80 e0       	ldi	r24, 0x00	; 0
+    35a2:	65 e0       	ldi	r22, 0x05	; 5
+    35a4:	41 e0       	ldi	r20, 0x01	; 1
+    35a6:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
 
             /*  the reason of this avoid make sound while accelerate BTN pressed    */
             if(Acccelerate_IsStillPressed == NO_Condition)
-    35a2:	80 91 e2 00 	lds	r24, 0x00E2
-    35a6:	88 23       	and	r24, r24
-    35a8:	69 f4       	brne	.+26     	; 0x35c4 <Buttons_Update+0xfa>
+    35aa:	80 91 e2 00 	lds	r24, 0x00E2
+    35ae:	88 23       	and	r24, r24
+    35b0:	69 f4       	brne	.+26     	; 0x35cc <Buttons_Update+0x102>
             {
                 Buzzer_NotifySound();
-    35aa:	0e 94 94 1b 	call	0x3728	; 0x3728 <Buzzer_NotifySound>
+    35b2:	0e 94 85 1b 	call	0x370a	; 0x370a <Buzzer_NotifySound>
                 Acccelerate_IsStillPressed = YES_Condition ;
-    35ae:	81 e0       	ldi	r24, 0x01	; 1
-    35b0:	80 93 e2 00 	sts	0x00E2, r24
-    35b4:	07 c0       	rjmp	.+14     	; 0x35c4 <Buttons_Update+0xfa>
+    35b6:	81 e0       	ldi	r24, 0x01	; 1
+    35b8:	80 93 e2 00 	sts	0x00E2, r24
+    35bc:	07 c0       	rjmp	.+14     	; 0x35cc <Buttons_Update+0x102>
             }
         }
         else
         {
             Acccelerate_IsStillPressed = NO_Condition;
-    35b6:	10 92 e2 00 	sts	0x00E2, r1
+    35be:	10 92 e2 00 	sts	0x00E2, r1
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
-    35ba:	80 e0       	ldi	r24, 0x00	; 0
-    35bc:	65 e0       	ldi	r22, 0x05	; 5
-    35be:	40 e0       	ldi	r20, 0x00	; 0
-    35c0:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
+    35c2:	80 e0       	ldi	r24, 0x00	; 0
+    35c4:	65 e0       	ldi	r22, 0x05	; 5
+    35c6:	40 e0       	ldi	r20, 0x00	; 0
+    35c8:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
         }
     }
 
 
 }
-    35c4:	0f 90       	pop	r0
-    35c6:	0f 90       	pop	r0
-    35c8:	0f 90       	pop	r0
-    35ca:	cf 91       	pop	r28
-    35cc:	df 91       	pop	r29
-    35ce:	08 95       	ret
+    35cc:	0f 90       	pop	r0
+    35ce:	0f 90       	pop	r0
+    35d0:	0f 90       	pop	r0
+    35d2:	cf 91       	pop	r28
+    35d4:	df 91       	pop	r29
+    35d6:	08 95       	ret
 
-000035d0 <DashBoard_Update_GearBox_state>:
+000035d8 <DashBoard_Update_GearBox_state>:
 
 
 static void DashBoard_Update_GearBox_state(uint8 GearBox_state)
 {
-    35d0:	df 93       	push	r29
-    35d2:	cf 93       	push	r28
-    35d4:	cd b7       	in	r28, 0x3d	; 61
-    35d6:	de b7       	in	r29, 0x3e	; 62
-    35d8:	29 97       	sbiw	r28, 0x09	; 9
-    35da:	0f b6       	in	r0, 0x3f	; 63
-    35dc:	f8 94       	cli
-    35de:	de bf       	out	0x3e, r29	; 62
-    35e0:	0f be       	out	0x3f, r0	; 63
-    35e2:	cd bf       	out	0x3d, r28	; 61
-    35e4:	8c 83       	std	Y+4, r24	; 0x04
+    35d8:	df 93       	push	r29
+    35da:	cf 93       	push	r28
+    35dc:	cd b7       	in	r28, 0x3d	; 61
+    35de:	de b7       	in	r29, 0x3e	; 62
+    35e0:	29 97       	sbiw	r28, 0x09	; 9
+    35e2:	0f b6       	in	r0, 0x3f	; 63
+    35e4:	f8 94       	cli
+    35e6:	de bf       	out	0x3e, r29	; 62
+    35e8:	0f be       	out	0x3f, r0	; 63
+    35ea:	cd bf       	out	0x3d, r28	; 61
+    35ec:	8c 83       	std	Y+4, r24	; 0x04
     /*  Array carry All Characters For GearBox as make display easier using index*/
     uint8 GearBox_Characyer [] = {'N','D','R'};
-    35e6:	ce 01       	movw	r24, r28
-    35e8:	01 96       	adiw	r24, 0x01	; 1
-    35ea:	9e 83       	std	Y+6, r25	; 0x06
-    35ec:	8d 83       	std	Y+5, r24	; 0x05
-    35ee:	e3 ed       	ldi	r30, 0xD3	; 211
-    35f0:	f0 e0       	ldi	r31, 0x00	; 0
-    35f2:	f8 87       	std	Y+8, r31	; 0x08
-    35f4:	ef 83       	std	Y+7, r30	; 0x07
-    35f6:	f3 e0       	ldi	r31, 0x03	; 3
-    35f8:	f9 87       	std	Y+9, r31	; 0x09
-    35fa:	ef 81       	ldd	r30, Y+7	; 0x07
-    35fc:	f8 85       	ldd	r31, Y+8	; 0x08
-    35fe:	00 80       	ld	r0, Z
-    3600:	8f 81       	ldd	r24, Y+7	; 0x07
-    3602:	98 85       	ldd	r25, Y+8	; 0x08
-    3604:	01 96       	adiw	r24, 0x01	; 1
-    3606:	98 87       	std	Y+8, r25	; 0x08
-    3608:	8f 83       	std	Y+7, r24	; 0x07
-    360a:	ed 81       	ldd	r30, Y+5	; 0x05
-    360c:	fe 81       	ldd	r31, Y+6	; 0x06
-    360e:	00 82       	st	Z, r0
-    3610:	8d 81       	ldd	r24, Y+5	; 0x05
-    3612:	9e 81       	ldd	r25, Y+6	; 0x06
-    3614:	01 96       	adiw	r24, 0x01	; 1
-    3616:	9e 83       	std	Y+6, r25	; 0x06
-    3618:	8d 83       	std	Y+5, r24	; 0x05
-    361a:	99 85       	ldd	r25, Y+9	; 0x09
-    361c:	91 50       	subi	r25, 0x01	; 1
-    361e:	99 87       	std	Y+9, r25	; 0x09
-    3620:	e9 85       	ldd	r30, Y+9	; 0x09
-    3622:	ee 23       	and	r30, r30
-    3624:	51 f7       	brne	.-44     	; 0x35fa <DashBoard_Update_GearBox_state+0x2a>
+    35ee:	ce 01       	movw	r24, r28
+    35f0:	01 96       	adiw	r24, 0x01	; 1
+    35f2:	9e 83       	std	Y+6, r25	; 0x06
+    35f4:	8d 83       	std	Y+5, r24	; 0x05
+    35f6:	e3 ed       	ldi	r30, 0xD3	; 211
+    35f8:	f0 e0       	ldi	r31, 0x00	; 0
+    35fa:	f8 87       	std	Y+8, r31	; 0x08
+    35fc:	ef 83       	std	Y+7, r30	; 0x07
+    35fe:	f3 e0       	ldi	r31, 0x03	; 3
+    3600:	f9 87       	std	Y+9, r31	; 0x09
+    3602:	ef 81       	ldd	r30, Y+7	; 0x07
+    3604:	f8 85       	ldd	r31, Y+8	; 0x08
+    3606:	00 80       	ld	r0, Z
+    3608:	8f 81       	ldd	r24, Y+7	; 0x07
+    360a:	98 85       	ldd	r25, Y+8	; 0x08
+    360c:	01 96       	adiw	r24, 0x01	; 1
+    360e:	98 87       	std	Y+8, r25	; 0x08
+    3610:	8f 83       	std	Y+7, r24	; 0x07
+    3612:	ed 81       	ldd	r30, Y+5	; 0x05
+    3614:	fe 81       	ldd	r31, Y+6	; 0x06
+    3616:	00 82       	st	Z, r0
+    3618:	8d 81       	ldd	r24, Y+5	; 0x05
+    361a:	9e 81       	ldd	r25, Y+6	; 0x06
+    361c:	01 96       	adiw	r24, 0x01	; 1
+    361e:	9e 83       	std	Y+6, r25	; 0x06
+    3620:	8d 83       	std	Y+5, r24	; 0x05
+    3622:	99 85       	ldd	r25, Y+9	; 0x09
+    3624:	91 50       	subi	r25, 0x01	; 1
+    3626:	99 87       	std	Y+9, r25	; 0x09
+    3628:	e9 85       	ldd	r30, Y+9	; 0x09
+    362a:	ee 23       	and	r30, r30
+    362c:	51 f7       	brne	.-44     	; 0x3602 <DashBoard_Update_GearBox_state+0x2a>
     /*  Go to index that display current GearBox state*/
     LCD_MoveCursor(0,17);
-    3626:	80 e0       	ldi	r24, 0x00	; 0
-    3628:	61 e1       	ldi	r22, 0x11	; 17
-    362a:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
+    362e:	80 e0       	ldi	r24, 0x00	; 0
+    3630:	61 e1       	ldi	r22, 0x11	; 17
+    3632:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
     /*  Edit its state with new state given to function*/
     LCD_DisplayCharacter(GearBox_Characyer[GearBox_state]);
-    362e:	8c 81       	ldd	r24, Y+4	; 0x04
-    3630:	28 2f       	mov	r18, r24
-    3632:	30 e0       	ldi	r19, 0x00	; 0
-    3634:	ce 01       	movw	r24, r28
-    3636:	01 96       	adiw	r24, 0x01	; 1
-    3638:	fc 01       	movw	r30, r24
-    363a:	e2 0f       	add	r30, r18
-    363c:	f3 1f       	adc	r31, r19
-    363e:	80 81       	ld	r24, Z
-    3640:	0e 94 b9 12 	call	0x2572	; 0x2572 <LCD_DisplayCharacter>
+    3636:	8c 81       	ldd	r24, Y+4	; 0x04
+    3638:	28 2f       	mov	r18, r24
+    363a:	30 e0       	ldi	r19, 0x00	; 0
+    363c:	ce 01       	movw	r24, r28
+    363e:	01 96       	adiw	r24, 0x01	; 1
+    3640:	fc 01       	movw	r30, r24
+    3642:	e2 0f       	add	r30, r18
+    3644:	f3 1f       	adc	r31, r19
+    3646:	80 81       	ld	r24, Z
+    3648:	0e 94 b9 12 	call	0x2572	; 0x2572 <LCD_DisplayCharacter>
 }
-    3644:	29 96       	adiw	r28, 0x09	; 9
-    3646:	0f b6       	in	r0, 0x3f	; 63
-    3648:	f8 94       	cli
-    364a:	de bf       	out	0x3e, r29	; 62
-    364c:	0f be       	out	0x3f, r0	; 63
-    364e:	cd bf       	out	0x3d, r28	; 61
-    3650:	cf 91       	pop	r28
-    3652:	df 91       	pop	r29
-    3654:	08 95       	ret
+    364c:	29 96       	adiw	r28, 0x09	; 9
+    364e:	0f b6       	in	r0, 0x3f	; 63
+    3650:	f8 94       	cli
+    3652:	de bf       	out	0x3e, r29	; 62
+    3654:	0f be       	out	0x3f, r0	; 63
+    3656:	cd bf       	out	0x3d, r28	; 61
+    3658:	cf 91       	pop	r28
+    365a:	df 91       	pop	r29
+    365c:	08 95       	ret
 
-00003656 <DashBoard_Update_ACCS_State>:
+0000365e <DashBoard_Update_ACCS_State>:
 
 static void DashBoard_Update_ACCS_State(uint8 ACCS_state)
 {
-    3656:	df 93       	push	r29
-    3658:	cf 93       	push	r28
-    365a:	00 d0       	rcall	.+0      	; 0x365c <DashBoard_Update_ACCS_State+0x6>
-    365c:	00 d0       	rcall	.+0      	; 0x365e <DashBoard_Update_ACCS_State+0x8>
-    365e:	0f 92       	push	r0
-    3660:	cd b7       	in	r28, 0x3d	; 61
-    3662:	de b7       	in	r29, 0x3e	; 62
-    3664:	8d 83       	std	Y+5, r24	; 0x05
+    365e:	df 93       	push	r29
+    3660:	cf 93       	push	r28
+    3662:	00 d0       	rcall	.+0      	; 0x3664 <DashBoard_Update_ACCS_State+0x6>
+    3664:	00 d0       	rcall	.+0      	; 0x3666 <DashBoard_Update_ACCS_State+0x8>
+    3666:	0f 92       	push	r0
+    3668:	cd b7       	in	r28, 0x3d	; 61
+    366a:	de b7       	in	r29, 0x3e	; 62
+    366c:	8d 83       	std	Y+5, r24	; 0x05
     const uint8 * ACCS_String[] = {(const uint8 * )"OFF",(const uint8 * )"ON "};
-    3666:	80 e9       	ldi	r24, 0x90	; 144
-    3668:	90 e0       	ldi	r25, 0x00	; 0
-    366a:	9a 83       	std	Y+2, r25	; 0x02
-    366c:	89 83       	std	Y+1, r24	; 0x01
-    366e:	84 e9       	ldi	r24, 0x94	; 148
+    366e:	80 e9       	ldi	r24, 0x90	; 144
     3670:	90 e0       	ldi	r25, 0x00	; 0
-    3672:	9c 83       	std	Y+4, r25	; 0x04
-    3674:	8b 83       	std	Y+3, r24	; 0x03
+    3672:	9a 83       	std	Y+2, r25	; 0x02
+    3674:	89 83       	std	Y+1, r24	; 0x01
+    3676:	84 e9       	ldi	r24, 0x94	; 148
+    3678:	90 e0       	ldi	r25, 0x00	; 0
+    367a:	9c 83       	std	Y+4, r25	; 0x04
+    367c:	8b 83       	std	Y+3, r24	; 0x03
     /*  Go to index that display current GearBox state*/
     LCD_MoveCursor(2,15);
-    3676:	82 e0       	ldi	r24, 0x02	; 2
-    3678:	6f e0       	ldi	r22, 0x0F	; 15
-    367a:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
+    367e:	82 e0       	ldi	r24, 0x02	; 2
+    3680:	6f e0       	ldi	r22, 0x0F	; 15
+    3682:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
     /*  Edit its state with new state given to function*/
     LCD_DisplayString(ACCS_String[ACCS_state]);
-    367e:	8d 81       	ldd	r24, Y+5	; 0x05
-    3680:	88 2f       	mov	r24, r24
-    3682:	90 e0       	ldi	r25, 0x00	; 0
-    3684:	9c 01       	movw	r18, r24
-    3686:	22 0f       	add	r18, r18
-    3688:	33 1f       	adc	r19, r19
-    368a:	ce 01       	movw	r24, r28
-    368c:	01 96       	adiw	r24, 0x01	; 1
-    368e:	fc 01       	movw	r30, r24
-    3690:	e2 0f       	add	r30, r18
-    3692:	f3 1f       	adc	r31, r19
-    3694:	80 81       	ld	r24, Z
-    3696:	91 81       	ldd	r25, Z+1	; 0x01
-    3698:	0e 94 2f 17 	call	0x2e5e	; 0x2e5e <LCD_DisplayString>
+    3686:	8d 81       	ldd	r24, Y+5	; 0x05
+    3688:	88 2f       	mov	r24, r24
+    368a:	90 e0       	ldi	r25, 0x00	; 0
+    368c:	9c 01       	movw	r18, r24
+    368e:	22 0f       	add	r18, r18
+    3690:	33 1f       	adc	r19, r19
+    3692:	ce 01       	movw	r24, r28
+    3694:	01 96       	adiw	r24, 0x01	; 1
+    3696:	fc 01       	movw	r30, r24
+    3698:	e2 0f       	add	r30, r18
+    369a:	f3 1f       	adc	r31, r19
+    369c:	80 81       	ld	r24, Z
+    369e:	91 81       	ldd	r25, Z+1	; 0x01
+    36a0:	0e 94 2f 17 	call	0x2e5e	; 0x2e5e <LCD_DisplayString>
 }
-    369c:	0f 90       	pop	r0
-    369e:	0f 90       	pop	r0
-    36a0:	0f 90       	pop	r0
-    36a2:	0f 90       	pop	r0
     36a4:	0f 90       	pop	r0
-    36a6:	cf 91       	pop	r28
-    36a8:	df 91       	pop	r29
-    36aa:	08 95       	ret
+    36a6:	0f 90       	pop	r0
+    36a8:	0f 90       	pop	r0
+    36aa:	0f 90       	pop	r0
+    36ac:	0f 90       	pop	r0
+    36ae:	cf 91       	pop	r28
+    36b0:	df 91       	pop	r29
+    36b2:	08 95       	ret
 
-000036ac <Braking_Button_Handling>:
+000036b4 <Braking_Button_Handling>:
 
 
 
 static void Braking_Button_Handling(void)
 {
-    36ac:	df 93       	push	r29
-    36ae:	cf 93       	push	r28
-    36b0:	cd b7       	in	r28, 0x3d	; 61
-    36b2:	de b7       	in	r29, 0x3e	; 62
+    36b4:	df 93       	push	r29
+    36b6:	cf 93       	push	r28
+    36b8:	cd b7       	in	r28, 0x3d	; 61
+    36ba:	de b7       	in	r29, 0x3e	; 62
     /*  Make initial state that Button is released  */
     static uint8 Braking_BTN_State = BTN_Released_State ;
     /*  Will Enter this condition only when press button Only (this will make failling edge)  */
     if(Braking_BTN_State == BTN_Released_State)
-    36b4:	80 91 d2 00 	lds	r24, 0x00D2
-    36b8:	81 30       	cpi	r24, 0x01	; 1
-    36ba:	19 f5       	brne	.+70     	; 0x3702 <Braking_Button_Handling+0x56>
+    36bc:	80 91 d2 00 	lds	r24, 0x00D2
+    36c0:	81 30       	cpi	r24, 0x01	; 1
+    36c2:	81 f4       	brne	.+32     	; 0x36e4 <Braking_Button_Handling+0x30>
     {
         /*  So when I release utton will make Rising Edge so I need to make setup to detect this state to turn led off  */
         INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN); /*    If swap between that command and next command will face problem that If I make very short press will face problem  that led will turn on only not turn off also and this not required*/
-    36bc:	83 e0       	ldi	r24, 0x03	; 3
-    36be:	60 e0       	ldi	r22, 0x00	; 0
-    36c0:	0e 94 48 0d 	call	0x1a90	; 0x1a90 <INT1_init>
+    36c4:	83 e0       	ldi	r24, 0x03	; 3
+    36c6:	60 e0       	ldi	r22, 0x00	; 0
+    36c8:	0e 94 48 0d 	call	0x1a90	; 0x1a90 <INT1_init>
 
         Buzzer_NotifySound();
-    36c4:	0e 94 94 1b 	call	0x3728	; 0x3728 <Buzzer_NotifySound>
+    36cc:	0e 94 85 1b 	call	0x370a	; 0x370a <Buzzer_NotifySound>
 
         /*  Make update to state    */
         Braking_BTN_State = BTN_Pressed_State;
-    36c8:	10 92 d2 00 	sts	0x00D2, r1
+    36d0:	10 92 d2 00 	sts	0x00D2, r1
         /*  Turn led on  */
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_ON);
-    36cc:	81 e0       	ldi	r24, 0x01	; 1
-    36ce:	67 e0       	ldi	r22, 0x07	; 7
-    36d0:	41 e0       	ldi	r20, 0x01	; 1
-    36d2:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
-/*                Here when I press in Braking if in D mode should Disable ACCS mode                                                       */
-        if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
-    36d6:	80 91 e0 00 	lds	r24, 0x00E0
-    36da:	81 30       	cpi	r24, 0x01	; 1
-    36dc:	11 f5       	brne	.+68     	; 0x3722 <Braking_Button_Handling+0x76>
-    36de:	80 91 e1 00 	lds	r24, 0x00E1
-    36e2:	81 30       	cpi	r24, 0x01	; 1
-    36e4:	f1 f4       	brne	.+60     	; 0x3722 <Braking_Button_Handling+0x76>
-        {
-            /*  Disable ACCS if Enabled  */
-            ACCS_Currnet_state = ACCS_Disable;
-    36e6:	10 92 e1 00 	sts	0x00E1, r1
-            /*  Turn off led of it was turned on  */
-            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
-    36ea:	80 e0       	ldi	r24, 0x00	; 0
-    36ec:	64 e0       	ldi	r22, 0x04	; 4
-    36ee:	40 e0       	ldi	r20, 0x00	; 0
-    36f0:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
-            /*  Update LCD with new change*/
-            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
-    36f4:	80 91 e1 00 	lds	r24, 0x00E1
-    36f8:	0e 94 2b 1b 	call	0x3656	; 0x3656 <DashBoard_Update_ACCS_State>
+    36d4:	81 e0       	ldi	r24, 0x01	; 1
+    36d6:	67 e0       	ldi	r22, 0x07	; 7
+    36d8:	41 e0       	ldi	r20, 0x01	; 1
+    36da:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
 
-            DashBoard_DistanceHide();
-    36fc:	0e 94 c2 1b 	call	0x3784	; 0x3784 <DashBoard_DistanceHide>
-    3700:	10 c0       	rjmp	.+32     	; 0x3722 <Braking_Button_Handling+0x76>
-        }
+        //     DashBoard_DistanceHide();
+
+
+        // }
+        tessst();
+    36de:	0e 94 c2 1b 	call	0x3784	; 0x3784 <tessst>
+    36e2:	10 c0       	rjmp	.+32     	; 0x3704 <Braking_Button_Handling+0x50>
     }
     /*  Will Enter this condition only when release button Only (this will make failling edge)  */
     else if(Braking_BTN_State == BTN_Pressed_State)
-    3702:	80 91 d2 00 	lds	r24, 0x00D2
-    3706:	88 23       	and	r24, r24
-    3708:	61 f4       	brne	.+24     	; 0x3722 <Braking_Button_Handling+0x76>
+    36e4:	80 91 d2 00 	lds	r24, 0x00D2
+    36e8:	88 23       	and	r24, r24
+    36ea:	61 f4       	brne	.+24     	; 0x3704 <Braking_Button_Handling+0x50>
     {
 
         INT1_init(FALLING_EDGE_TRIGGER,INPUT_PIN);
-    370a:	82 e0       	ldi	r24, 0x02	; 2
-    370c:	60 e0       	ldi	r22, 0x00	; 0
-    370e:	0e 94 48 0d 	call	0x1a90	; 0x1a90 <INT1_init>
+    36ec:	82 e0       	ldi	r24, 0x02	; 2
+    36ee:	60 e0       	ldi	r22, 0x00	; 0
+    36f0:	0e 94 48 0d 	call	0x1a90	; 0x1a90 <INT1_init>
         Braking_BTN_State = BTN_Released_State;
-    3712:	81 e0       	ldi	r24, 0x01	; 1
-    3714:	80 93 d2 00 	sts	0x00D2, r24
+    36f4:	81 e0       	ldi	r24, 0x01	; 1
+    36f6:	80 93 d2 00 	sts	0x00D2, r24
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_OFF);
-    3718:	81 e0       	ldi	r24, 0x01	; 1
-    371a:	67 e0       	ldi	r22, 0x07	; 7
-    371c:	40 e0       	ldi	r20, 0x00	; 0
-    371e:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
+    36fa:	81 e0       	ldi	r24, 0x01	; 1
+    36fc:	67 e0       	ldi	r22, 0x07	; 7
+    36fe:	40 e0       	ldi	r20, 0x00	; 0
+    3700:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
     }
 }
-    3722:	cf 91       	pop	r28
-    3724:	df 91       	pop	r29
-    3726:	08 95       	ret
+    3704:	cf 91       	pop	r28
+    3706:	df 91       	pop	r29
+    3708:	08 95       	ret
 
-00003728 <Buzzer_NotifySound>:
+0000370a <Buzzer_NotifySound>:
 
 
 static void Buzzer_NotifySound(void)
 {
-    3728:	df 93       	push	r29
-    372a:	cf 93       	push	r28
-    372c:	cd b7       	in	r28, 0x3d	; 61
-    372e:	de b7       	in	r29, 0x3e	; 62
+    370a:	df 93       	push	r29
+    370c:	cf 93       	push	r28
+    370e:	cd b7       	in	r28, 0x3d	; 61
+    3710:	de b7       	in	r29, 0x3e	; 62
     /*  initialize Timer register with zero value   */
     Timer0_UpdateValue(0);
-    3730:	80 e0       	ldi	r24, 0x00	; 0
-    3732:	0e 94 15 06 	call	0xc2a	; 0xc2a <Timer0_UpdateValue>
+    3712:	80 e0       	ldi	r24, 0x00	; 0
+    3714:	0e 94 15 06 	call	0xc2a	; 0xc2a <Timer0_UpdateValue>
     /*  Turn Buzzer on  */
     Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
-    3736:	82 e0       	ldi	r24, 0x02	; 2
-    3738:	66 e0       	ldi	r22, 0x06	; 6
-    373a:	41 e0       	ldi	r20, 0x01	; 1
-    373c:	0e 94 3c 19 	call	0x3278	; 0x3278 <Buzzer_OnOffPositiveLogic>
+    3718:	82 e0       	ldi	r24, 0x02	; 2
+    371a:	66 e0       	ldi	r22, 0x06	; 6
+    371c:	41 e0       	ldi	r20, 0x01	; 1
+    371e:	0e 94 3c 19 	call	0x3278	; 0x3278 <Buzzer_OnOffPositiveLogic>
     /*  Timer provide clock  */
     Timer0_ProvideClock();
-    3740:	0e 94 31 06 	call	0xc62	; 0xc62 <Timer0_ProvideClock>
+    3722:	0e 94 31 06 	call	0xc62	; 0xc62 <Timer0_ProvideClock>
 
     /*  There are another function after timeout will turn buzzer off and stop clock for timer register  */
 
 }
-    3744:	cf 91       	pop	r28
-    3746:	df 91       	pop	r29
-    3748:	08 95       	ret
+    3726:	cf 91       	pop	r28
+    3728:	df 91       	pop	r29
+    372a:	08 95       	ret
 
-0000374a <Buzzer_timeOutOff>:
+0000372c <Buzzer_timeOutOff>:
 
 
 void Buzzer_timeOutOff(void)
 {
-    374a:	df 93       	push	r29
-    374c:	cf 93       	push	r28
-    374e:	cd b7       	in	r28, 0x3d	; 61
-    3750:	de b7       	in	r29, 0x3e	; 62
+    372c:	df 93       	push	r29
+    372e:	cf 93       	push	r28
+    3730:	cd b7       	in	r28, 0x3d	; 61
+    3732:	de b7       	in	r29, 0x3e	; 62
     Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
-    3752:	82 e0       	ldi	r24, 0x02	; 2
-    3754:	66 e0       	ldi	r22, 0x06	; 6
-    3756:	40 e0       	ldi	r20, 0x00	; 0
-    3758:	0e 94 3c 19 	call	0x3278	; 0x3278 <Buzzer_OnOffPositiveLogic>
+    3734:	82 e0       	ldi	r24, 0x02	; 2
+    3736:	66 e0       	ldi	r22, 0x06	; 6
+    3738:	40 e0       	ldi	r20, 0x00	; 0
+    373a:	0e 94 3c 19 	call	0x3278	; 0x3278 <Buzzer_OnOffPositiveLogic>
     Timer0_StopClock();
-    375c:	0e 94 23 06 	call	0xc46	; 0xc46 <Timer0_StopClock>
+    373e:	0e 94 23 06 	call	0xc46	; 0xc46 <Timer0_StopClock>
+}
+    3742:	cf 91       	pop	r28
+    3744:	df 91       	pop	r29
+    3746:	08 95       	ret
+
+00003748 <DashBoard_DistanceShow>:
+
+
+static void DashBoard_DistanceShow(void)
+{
+    3748:	df 93       	push	r29
+    374a:	cf 93       	push	r28
+    374c:	cd b7       	in	r28, 0x3d	; 61
+    374e:	de b7       	in	r29, 0x3e	; 62
+    LCD_MoveCursor(3,0);
+    3750:	83 e0       	ldi	r24, 0x03	; 3
+    3752:	60 e0       	ldi	r22, 0x00	; 0
+    3754:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
+    LCD_DisplayString((const uint8 * )"Distance : ");
+    3758:	88 e9       	ldi	r24, 0x98	; 152
+    375a:	90 e0       	ldi	r25, 0x00	; 0
+    375c:	0e 94 2f 17 	call	0x2e5e	; 0x2e5e <LCD_DisplayString>
 }
     3760:	cf 91       	pop	r28
     3762:	df 91       	pop	r29
     3764:	08 95       	ret
 
-00003766 <DashBoard_DistanceShow>:
+00003766 <DashBoard_DistanceHide>:
 
 
-static void DashBoard_DistanceShow(void)
+static void DashBoard_DistanceHide(void)
 {
     3766:	df 93       	push	r29
     3768:	cf 93       	push	r28
@@ -8668,8 +8672,8 @@ static void DashBoard_DistanceShow(void)
     376e:	83 e0       	ldi	r24, 0x03	; 3
     3770:	60 e0       	ldi	r22, 0x00	; 0
     3772:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
-    LCD_DisplayString((const uint8 * )"Distance : ");
-    3776:	88 e9       	ldi	r24, 0x98	; 152
+    LCD_DisplayString((const uint8 * )"                 ");
+    3776:	84 ea       	ldi	r24, 0xA4	; 164
     3778:	90 e0       	ldi	r25, 0x00	; 0
     377a:	0e 94 2f 17 	call	0x2e5e	; 0x2e5e <LCD_DisplayString>
 }
@@ -8677,187 +8681,209 @@ static void DashBoard_DistanceShow(void)
     3780:	df 91       	pop	r29
     3782:	08 95       	ret
 
-00003784 <DashBoard_DistanceHide>:
+00003784 <tessst>:
 
 
-static void DashBoard_DistanceHide(void)
+void tessst (void)
 {
     3784:	df 93       	push	r29
     3786:	cf 93       	push	r28
     3788:	cd b7       	in	r28, 0x3d	; 61
     378a:	de b7       	in	r29, 0x3e	; 62
-    LCD_MoveCursor(3,0);
-    378c:	83 e0       	ldi	r24, 0x03	; 3
-    378e:	60 e0       	ldi	r22, 0x00	; 0
-    3790:	0e 94 58 17 	call	0x2eb0	; 0x2eb0 <LCD_MoveCursor>
-    LCD_DisplayString((const uint8 * )"                 ");
-    3794:	84 ea       	ldi	r24, 0xA4	; 164
-    3796:	90 e0       	ldi	r25, 0x00	; 0
-    3798:	0e 94 2f 17 	call	0x2e5e	; 0x2e5e <LCD_DisplayString>
-}
-    379c:	cf 91       	pop	r28
-    379e:	df 91       	pop	r29
-    37a0:	08 95       	ret
+            if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
+    378c:	80 91 e0 00 	lds	r24, 0x00E0
+    3790:	81 30       	cpi	r24, 0x01	; 1
+    3792:	91 f4       	brne	.+36     	; 0x37b8 <tessst+0x34>
+    3794:	80 91 e1 00 	lds	r24, 0x00E1
+    3798:	81 30       	cpi	r24, 0x01	; 1
+    379a:	71 f4       	brne	.+28     	; 0x37b8 <tessst+0x34>
+        {
+            /*	Enable Global Interrupt  */
+	        sei();
+    379c:	78 94       	sei
 
-000037a2 <main>:
+            /*  Disable ACCS if Enabled  */
+            ACCS_Currnet_state = ACCS_Disable;
+    379e:	10 92 e1 00 	sts	0x00E1, r1
+            /*  Turn off led of it was turned on  */
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+    37a2:	80 e0       	ldi	r24, 0x00	; 0
+    37a4:	64 e0       	ldi	r22, 0x04	; 4
+    37a6:	40 e0       	ldi	r20, 0x00	; 0
+    37a8:	0e 94 d8 0d 	call	0x1bb0	; 0x1bb0 <LED_OnOffPositiveLogic>
+            /*  Update LCD with new change*/
+            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+    37ac:	80 91 e1 00 	lds	r24, 0x00E1
+    37b0:	0e 94 2f 1b 	call	0x365e	; 0x365e <DashBoard_Update_ACCS_State>
+
+            DashBoard_DistanceHide();
+    37b4:	0e 94 b3 1b 	call	0x3766	; 0x3766 <DashBoard_DistanceHide>
+
+
+        }
+    37b8:	cf 91       	pop	r28
+    37ba:	df 91       	pop	r29
+    37bc:	08 95       	ret
+
+000037be <main>:
 
 
 #include "Application/Application_interface.h"
 
 int main()
 {
-    37a2:	df 93       	push	r29
-    37a4:	cf 93       	push	r28
-    37a6:	cd b7       	in	r28, 0x3d	; 61
-    37a8:	de b7       	in	r29, 0x3e	; 62
+    37be:	df 93       	push	r29
+    37c0:	cf 93       	push	r28
+    37c2:	cd b7       	in	r28, 0x3d	; 61
+    37c4:	de b7       	in	r29, 0x3e	; 62
 	/*	Make Initialize for Every thing*/
 	App_Init();
-    37aa:	0e 94 b0 19 	call	0x3360	; 0x3360 <App_Init>
+    37c6:	0e 94 b0 19 	call	0x3360	; 0x3360 <App_Init>
 	
 	while(1)
 	{
 		StateMachineUpdate();
-    37ae:	0e 94 20 1a 	call	0x3440	; 0x3440 <StateMachineUpdate>
-    37b2:	fd cf       	rjmp	.-6      	; 0x37ae <main+0xc>
+    37ca:	0e 94 20 1a 	call	0x3440	; 0x3440 <StateMachineUpdate>
+    37ce:	fd cf       	rjmp	.-6      	; 0x37ca <main+0xc>
 
-000037b4 <__prologue_saves__>:
-    37b4:	2f 92       	push	r2
-    37b6:	3f 92       	push	r3
-    37b8:	4f 92       	push	r4
-    37ba:	5f 92       	push	r5
-    37bc:	6f 92       	push	r6
-    37be:	7f 92       	push	r7
-    37c0:	8f 92       	push	r8
-    37c2:	9f 92       	push	r9
-    37c4:	af 92       	push	r10
-    37c6:	bf 92       	push	r11
-    37c8:	cf 92       	push	r12
-    37ca:	df 92       	push	r13
-    37cc:	ef 92       	push	r14
-    37ce:	ff 92       	push	r15
-    37d0:	0f 93       	push	r16
-    37d2:	1f 93       	push	r17
-    37d4:	cf 93       	push	r28
-    37d6:	df 93       	push	r29
-    37d8:	cd b7       	in	r28, 0x3d	; 61
-    37da:	de b7       	in	r29, 0x3e	; 62
-    37dc:	ca 1b       	sub	r28, r26
-    37de:	db 0b       	sbc	r29, r27
-    37e0:	0f b6       	in	r0, 0x3f	; 63
-    37e2:	f8 94       	cli
-    37e4:	de bf       	out	0x3e, r29	; 62
-    37e6:	0f be       	out	0x3f, r0	; 63
-    37e8:	cd bf       	out	0x3d, r28	; 61
-    37ea:	09 94       	ijmp
+000037d0 <__prologue_saves__>:
+    37d0:	2f 92       	push	r2
+    37d2:	3f 92       	push	r3
+    37d4:	4f 92       	push	r4
+    37d6:	5f 92       	push	r5
+    37d8:	6f 92       	push	r6
+    37da:	7f 92       	push	r7
+    37dc:	8f 92       	push	r8
+    37de:	9f 92       	push	r9
+    37e0:	af 92       	push	r10
+    37e2:	bf 92       	push	r11
+    37e4:	cf 92       	push	r12
+    37e6:	df 92       	push	r13
+    37e8:	ef 92       	push	r14
+    37ea:	ff 92       	push	r15
+    37ec:	0f 93       	push	r16
+    37ee:	1f 93       	push	r17
+    37f0:	cf 93       	push	r28
+    37f2:	df 93       	push	r29
+    37f4:	cd b7       	in	r28, 0x3d	; 61
+    37f6:	de b7       	in	r29, 0x3e	; 62
+    37f8:	ca 1b       	sub	r28, r26
+    37fa:	db 0b       	sbc	r29, r27
+    37fc:	0f b6       	in	r0, 0x3f	; 63
+    37fe:	f8 94       	cli
+    3800:	de bf       	out	0x3e, r29	; 62
+    3802:	0f be       	out	0x3f, r0	; 63
+    3804:	cd bf       	out	0x3d, r28	; 61
+    3806:	09 94       	ijmp
 
-000037ec <__epilogue_restores__>:
-    37ec:	2a 88       	ldd	r2, Y+18	; 0x12
-    37ee:	39 88       	ldd	r3, Y+17	; 0x11
-    37f0:	48 88       	ldd	r4, Y+16	; 0x10
-    37f2:	5f 84       	ldd	r5, Y+15	; 0x0f
-    37f4:	6e 84       	ldd	r6, Y+14	; 0x0e
-    37f6:	7d 84       	ldd	r7, Y+13	; 0x0d
-    37f8:	8c 84       	ldd	r8, Y+12	; 0x0c
-    37fa:	9b 84       	ldd	r9, Y+11	; 0x0b
-    37fc:	aa 84       	ldd	r10, Y+10	; 0x0a
-    37fe:	b9 84       	ldd	r11, Y+9	; 0x09
-    3800:	c8 84       	ldd	r12, Y+8	; 0x08
-    3802:	df 80       	ldd	r13, Y+7	; 0x07
-    3804:	ee 80       	ldd	r14, Y+6	; 0x06
-    3806:	fd 80       	ldd	r15, Y+5	; 0x05
-    3808:	0c 81       	ldd	r16, Y+4	; 0x04
-    380a:	1b 81       	ldd	r17, Y+3	; 0x03
-    380c:	aa 81       	ldd	r26, Y+2	; 0x02
-    380e:	b9 81       	ldd	r27, Y+1	; 0x01
-    3810:	ce 0f       	add	r28, r30
-    3812:	d1 1d       	adc	r29, r1
-    3814:	0f b6       	in	r0, 0x3f	; 63
-    3816:	f8 94       	cli
-    3818:	de bf       	out	0x3e, r29	; 62
-    381a:	0f be       	out	0x3f, r0	; 63
-    381c:	cd bf       	out	0x3d, r28	; 61
-    381e:	ed 01       	movw	r28, r26
-    3820:	08 95       	ret
+00003808 <__epilogue_restores__>:
+    3808:	2a 88       	ldd	r2, Y+18	; 0x12
+    380a:	39 88       	ldd	r3, Y+17	; 0x11
+    380c:	48 88       	ldd	r4, Y+16	; 0x10
+    380e:	5f 84       	ldd	r5, Y+15	; 0x0f
+    3810:	6e 84       	ldd	r6, Y+14	; 0x0e
+    3812:	7d 84       	ldd	r7, Y+13	; 0x0d
+    3814:	8c 84       	ldd	r8, Y+12	; 0x0c
+    3816:	9b 84       	ldd	r9, Y+11	; 0x0b
+    3818:	aa 84       	ldd	r10, Y+10	; 0x0a
+    381a:	b9 84       	ldd	r11, Y+9	; 0x09
+    381c:	c8 84       	ldd	r12, Y+8	; 0x08
+    381e:	df 80       	ldd	r13, Y+7	; 0x07
+    3820:	ee 80       	ldd	r14, Y+6	; 0x06
+    3822:	fd 80       	ldd	r15, Y+5	; 0x05
+    3824:	0c 81       	ldd	r16, Y+4	; 0x04
+    3826:	1b 81       	ldd	r17, Y+3	; 0x03
+    3828:	aa 81       	ldd	r26, Y+2	; 0x02
+    382a:	b9 81       	ldd	r27, Y+1	; 0x01
+    382c:	ce 0f       	add	r28, r30
+    382e:	d1 1d       	adc	r29, r1
+    3830:	0f b6       	in	r0, 0x3f	; 63
+    3832:	f8 94       	cli
+    3834:	de bf       	out	0x3e, r29	; 62
+    3836:	0f be       	out	0x3f, r0	; 63
+    3838:	cd bf       	out	0x3d, r28	; 61
+    383a:	ed 01       	movw	r28, r26
+    383c:	08 95       	ret
 
-00003822 <itoa>:
-    3822:	fb 01       	movw	r30, r22
-    3824:	9f 01       	movw	r18, r30
-    3826:	e8 94       	clt
-    3828:	42 30       	cpi	r20, 0x02	; 2
-    382a:	c4 f0       	brlt	.+48     	; 0x385c <itoa+0x3a>
-    382c:	45 32       	cpi	r20, 0x25	; 37
-    382e:	b4 f4       	brge	.+44     	; 0x385c <itoa+0x3a>
-    3830:	4a 30       	cpi	r20, 0x0A	; 10
-    3832:	29 f4       	brne	.+10     	; 0x383e <itoa+0x1c>
-    3834:	97 fb       	bst	r25, 7
-    3836:	1e f4       	brtc	.+6      	; 0x383e <itoa+0x1c>
-    3838:	90 95       	com	r25
-    383a:	81 95       	neg	r24
-    383c:	9f 4f       	sbci	r25, 0xFF	; 255
-    383e:	64 2f       	mov	r22, r20
-    3840:	77 27       	eor	r23, r23
-    3842:	0e 94 42 1c 	call	0x3884	; 0x3884 <__udivmodhi4>
-    3846:	80 5d       	subi	r24, 0xD0	; 208
-    3848:	8a 33       	cpi	r24, 0x3A	; 58
-    384a:	0c f0       	brlt	.+2      	; 0x384e <itoa+0x2c>
-    384c:	89 5d       	subi	r24, 0xD9	; 217
-    384e:	81 93       	st	Z+, r24
-    3850:	cb 01       	movw	r24, r22
-    3852:	00 97       	sbiw	r24, 0x00	; 0
-    3854:	a1 f7       	brne	.-24     	; 0x383e <itoa+0x1c>
-    3856:	16 f4       	brtc	.+4      	; 0x385c <itoa+0x3a>
-    3858:	5d e2       	ldi	r21, 0x2D	; 45
-    385a:	51 93       	st	Z+, r21
-    385c:	10 82       	st	Z, r1
-    385e:	c9 01       	movw	r24, r18
-    3860:	0c 94 32 1c 	jmp	0x3864	; 0x3864 <strrev>
+0000383e <itoa>:
+    383e:	fb 01       	movw	r30, r22
+    3840:	9f 01       	movw	r18, r30
+    3842:	e8 94       	clt
+    3844:	42 30       	cpi	r20, 0x02	; 2
+    3846:	c4 f0       	brlt	.+48     	; 0x3878 <itoa+0x3a>
+    3848:	45 32       	cpi	r20, 0x25	; 37
+    384a:	b4 f4       	brge	.+44     	; 0x3878 <itoa+0x3a>
+    384c:	4a 30       	cpi	r20, 0x0A	; 10
+    384e:	29 f4       	brne	.+10     	; 0x385a <itoa+0x1c>
+    3850:	97 fb       	bst	r25, 7
+    3852:	1e f4       	brtc	.+6      	; 0x385a <itoa+0x1c>
+    3854:	90 95       	com	r25
+    3856:	81 95       	neg	r24
+    3858:	9f 4f       	sbci	r25, 0xFF	; 255
+    385a:	64 2f       	mov	r22, r20
+    385c:	77 27       	eor	r23, r23
+    385e:	0e 94 50 1c 	call	0x38a0	; 0x38a0 <__udivmodhi4>
+    3862:	80 5d       	subi	r24, 0xD0	; 208
+    3864:	8a 33       	cpi	r24, 0x3A	; 58
+    3866:	0c f0       	brlt	.+2      	; 0x386a <itoa+0x2c>
+    3868:	89 5d       	subi	r24, 0xD9	; 217
+    386a:	81 93       	st	Z+, r24
+    386c:	cb 01       	movw	r24, r22
+    386e:	00 97       	sbiw	r24, 0x00	; 0
+    3870:	a1 f7       	brne	.-24     	; 0x385a <itoa+0x1c>
+    3872:	16 f4       	brtc	.+4      	; 0x3878 <itoa+0x3a>
+    3874:	5d e2       	ldi	r21, 0x2D	; 45
+    3876:	51 93       	st	Z+, r21
+    3878:	10 82       	st	Z, r1
+    387a:	c9 01       	movw	r24, r18
+    387c:	0c 94 40 1c 	jmp	0x3880	; 0x3880 <strrev>
 
-00003864 <strrev>:
-    3864:	dc 01       	movw	r26, r24
-    3866:	fc 01       	movw	r30, r24
-    3868:	67 2f       	mov	r22, r23
-    386a:	71 91       	ld	r23, Z+
-    386c:	77 23       	and	r23, r23
-    386e:	e1 f7       	brne	.-8      	; 0x3868 <strrev+0x4>
-    3870:	32 97       	sbiw	r30, 0x02	; 2
-    3872:	04 c0       	rjmp	.+8      	; 0x387c <strrev+0x18>
-    3874:	7c 91       	ld	r23, X
-    3876:	6d 93       	st	X+, r22
-    3878:	70 83       	st	Z, r23
-    387a:	62 91       	ld	r22, -Z
-    387c:	ae 17       	cp	r26, r30
-    387e:	bf 07       	cpc	r27, r31
-    3880:	c8 f3       	brcs	.-14     	; 0x3874 <strrev+0x10>
-    3882:	08 95       	ret
+00003880 <strrev>:
+    3880:	dc 01       	movw	r26, r24
+    3882:	fc 01       	movw	r30, r24
+    3884:	67 2f       	mov	r22, r23
+    3886:	71 91       	ld	r23, Z+
+    3888:	77 23       	and	r23, r23
+    388a:	e1 f7       	brne	.-8      	; 0x3884 <strrev+0x4>
+    388c:	32 97       	sbiw	r30, 0x02	; 2
+    388e:	04 c0       	rjmp	.+8      	; 0x3898 <strrev+0x18>
+    3890:	7c 91       	ld	r23, X
+    3892:	6d 93       	st	X+, r22
+    3894:	70 83       	st	Z, r23
+    3896:	62 91       	ld	r22, -Z
+    3898:	ae 17       	cp	r26, r30
+    389a:	bf 07       	cpc	r27, r31
+    389c:	c8 f3       	brcs	.-14     	; 0x3890 <strrev+0x10>
+    389e:	08 95       	ret
 
-00003884 <__udivmodhi4>:
-    3884:	aa 1b       	sub	r26, r26
-    3886:	bb 1b       	sub	r27, r27
-    3888:	51 e1       	ldi	r21, 0x11	; 17
-    388a:	07 c0       	rjmp	.+14     	; 0x389a <__udivmodhi4_ep>
+000038a0 <__udivmodhi4>:
+    38a0:	aa 1b       	sub	r26, r26
+    38a2:	bb 1b       	sub	r27, r27
+    38a4:	51 e1       	ldi	r21, 0x11	; 17
+    38a6:	07 c0       	rjmp	.+14     	; 0x38b6 <__udivmodhi4_ep>
 
-0000388c <__udivmodhi4_loop>:
-    388c:	aa 1f       	adc	r26, r26
-    388e:	bb 1f       	adc	r27, r27
-    3890:	a6 17       	cp	r26, r22
-    3892:	b7 07       	cpc	r27, r23
-    3894:	10 f0       	brcs	.+4      	; 0x389a <__udivmodhi4_ep>
-    3896:	a6 1b       	sub	r26, r22
-    3898:	b7 0b       	sbc	r27, r23
+000038a8 <__udivmodhi4_loop>:
+    38a8:	aa 1f       	adc	r26, r26
+    38aa:	bb 1f       	adc	r27, r27
+    38ac:	a6 17       	cp	r26, r22
+    38ae:	b7 07       	cpc	r27, r23
+    38b0:	10 f0       	brcs	.+4      	; 0x38b6 <__udivmodhi4_ep>
+    38b2:	a6 1b       	sub	r26, r22
+    38b4:	b7 0b       	sbc	r27, r23
 
-0000389a <__udivmodhi4_ep>:
-    389a:	88 1f       	adc	r24, r24
-    389c:	99 1f       	adc	r25, r25
-    389e:	5a 95       	dec	r21
-    38a0:	a9 f7       	brne	.-22     	; 0x388c <__udivmodhi4_loop>
-    38a2:	80 95       	com	r24
-    38a4:	90 95       	com	r25
-    38a6:	bc 01       	movw	r22, r24
-    38a8:	cd 01       	movw	r24, r26
-    38aa:	08 95       	ret
+000038b6 <__udivmodhi4_ep>:
+    38b6:	88 1f       	adc	r24, r24
+    38b8:	99 1f       	adc	r25, r25
+    38ba:	5a 95       	dec	r21
+    38bc:	a9 f7       	brne	.-22     	; 0x38a8 <__udivmodhi4_loop>
+    38be:	80 95       	com	r24
+    38c0:	90 95       	com	r25
+    38c2:	bc 01       	movw	r22, r24
+    38c4:	cd 01       	movw	r24, r26
+    38c6:	08 95       	ret
 
-000038ac <_exit>:
-    38ac:	f8 94       	cli
+000038c8 <_exit>:
+    38c8:	f8 94       	cli
 
-000038ae <__stop_program>:
-    38ae:	ff cf       	rjmp	.-2      	; 0x38ae <__stop_program>
+000038ca <__stop_program>:
+    38ca:	ff cf       	rjmp	.-2      	; 0x38ca <__stop_program>
