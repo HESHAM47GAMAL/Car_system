@@ -111,12 +111,18 @@ static void Hanndle_GrearBox_N_State(void)
 {
     if(GearBox_Current_State == N_GearBox)
     {
-        /*  Disable ACCS if Enabled  */
-        ACCS_Currnet_state = ACCS_Disable;
-        /*  Turn off led of it was turned on  */
-        LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
-        /*  Update LCD with new change*/
-        DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+        if(ACCS_Currnet_state == ACCS_Enable)
+        {
+            /*  Disable ACCS if Enabled  */
+            ACCS_Currnet_state = ACCS_Disable;
+            /*  Turn off led of it was turned on  */
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+            /*  Update LCD with new change*/
+            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+            
+            DashBoard_DistanceHide();
+
+        }
     }
    
 }
@@ -126,12 +132,18 @@ static void Hanndle_GrearBox_R_State(void)
 {
     if(GearBox_Current_State == R_GearBox)
     {
-        /*  Disable ACCS if Enabled  */
-        ACCS_Currnet_state = ACCS_Disable;
-        /*  Turn off led of it was turned on  */
-        LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
-        /*  Update LCD with new change*/
-        DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+        if(ACCS_Currnet_state == ACCS_Enable)
+        {
+            /*  Disable ACCS if Enabled  */
+            ACCS_Currnet_state = ACCS_Disable;
+            /*  Turn off led of it was turned on  */
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
+            /*  Update LCD with new change*/
+            DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+            
+            DashBoard_DistanceHide();
+
+        }
     }
 }
 
@@ -190,9 +202,15 @@ static void Buttons_Update(void)
 
                 ACCS_IsStillPressed = YES_Condition ;
                 if(ACCS_Currnet_state == ACCS_Disable ) 
+                {
                     ACCS_Currnet_state = ACCS_Enable;
+                    DashBoard_DistanceShow();
+                }
                 else
+                {
                     ACCS_Currnet_state = ACCS_Disable;
+                    DashBoard_DistanceHide();
+                }
 
                 LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
                 DashBoard_Update_ACCS_State(ACCS_Currnet_state);
@@ -263,10 +281,11 @@ static void Braking_Button_Handling(void)
     /*  Will Enter this condition only when press button Only (this will make failling edge)  */
     if(Braking_BTN_State == BTN_Released_State)
     {
+        /*  So when I release utton will make Rising Edge so I need to make setup to detect this state to turn led off  */
+        INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN); /*    If swap between that command and next command will face problem that If I make very short press will face problem  that led will turn on only not turn off also and this not required*/
+
         Buzzer_NotifySound();
 
-        /*  So when I release utton will make Rising Edge so I need to make setup to detect this state to turn led off  */
-        INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN);
         /*  Make update to state    */
         Braking_BTN_State = BTN_Pressed_State;
         /*  Turn led on  */
@@ -280,6 +299,8 @@ static void Braking_Button_Handling(void)
             LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
             /*  Update LCD with new change*/
             DashBoard_Update_ACCS_State(ACCS_Currnet_state);
+
+            DashBoard_DistanceHide();
         }
     }
     /*  Will Enter this condition only when release button Only (this will make failling edge)  */
@@ -312,3 +333,18 @@ void Buzzer_timeOutOff(void)
     Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
     Timer0_StopClock();
 }
+
+
+static void DashBoard_DistanceShow(void)
+{
+    LCD_MoveCursor(3,0);
+    LCD_DisplayString((const uint8 * )"Distance : ");
+}
+
+
+static void DashBoard_DistanceHide(void)
+{
+    LCD_MoveCursor(3,0);
+    LCD_DisplayString((const uint8 * )"                 ");
+}
+

@@ -1,5 +1,11 @@
-12:42:27 **** Incremental Build of configuration Debug for project Car_system ****
+16:42:03 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
+Building file: ../Application/Application_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Application/Application_program.d" -MT"Application/Application_program.o" -c -o "Application/Application_program.o" "../Application/Application_program.c"
+../Application/Application_private.h:115: warning: 'ACCS_CatchDistance' declared 'static' but never defined
+Finished building: ../Application/Application_program.c
+ 
 Building target: Car_system.elf
 Invoking: AVR C Linker
 avr-gcc -Wl,-Map,Car_system.map -mmcu=atmega16 -o "Car_system.elf"  ./MCAL/TIMER0/TIMER0_config.o ./MCAL/TIMER0/TIMER0_program.o  ./MCAL/GPIO/GPIO_program.o  ./MCAL/EXT_INT/EXT_INT_program.o  ./HAL/LED/LED_program.o  ./HAL/LCD/LCD_program.o  ./HAL/Buzzer/Buzzer_program.o  ./HAL/BUTTON/BUTTON_program.o  ./Application/Application_program.o  ./main.o   
@@ -19,10 +25,10 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   14496 bytes (88.5% Full)
+Program:   14622 bytes (89.2% Full)
 (.text + .data + .bootloader)
 
-Data:        103 bytes (10.1% Full)
+Data:        133 bytes (13.0% Full)
 (.data + .bss + .noinit)
 
 
