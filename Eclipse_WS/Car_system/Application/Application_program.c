@@ -89,9 +89,6 @@ static void DashBoard_Init(void)
     LCD_MoveCursor(2,0);
     LCD_DisplayString((const uint8 * )"ACCS(ON,OFF) : OFF");
 
-    /*  To display Distance */
-    // LCD_MoveCursor(3,0);
-    // LCD_DisplayString((const uint8 * )"Distnace : 0");
 }
 
 
@@ -291,8 +288,13 @@ static void Braking_Button_Handling(void)
         /*  Turn led on  */
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_ON);
 /*                Here when I press in Braking if in D mode should Disable ACCS mode                                                       */
-        if(GearBox_Current_State == D_GearBox)
+/*
+*   I face very big problem as this Button has two scienaros (very short press and normal or long press )
+*   In very short press I will face problem if I Enable ACCS as there are if condition will be true and this code will take time for execute (failing edge followed by rising edge ) and code in if condition execution time greater than time of(convert from failling edge to rising edge)
+*/
+        if((GearBox_Current_State == D_GearBox) && (ACCS_Currnet_state == ACCS_Enable))
         {
+            
             /*  Disable ACCS if Enabled  */
             ACCS_Currnet_state = ACCS_Disable;
             /*  Turn off led of it was turned on  */

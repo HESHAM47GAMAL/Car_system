@@ -157,7 +157,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x38a8
+.text           0x00000000     0x38b0
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -456,38 +456,38 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.DashBoard_Update_ACCS_State
                 0x00003656       0x56 ./Application/Application_program.o
  .text.Braking_Button_Handling
-                0x000036ac       0x74 ./Application/Application_program.o
+                0x000036ac       0x7c ./Application/Application_program.o
  .text.Buzzer_NotifySound
-                0x00003720       0x22 ./Application/Application_program.o
+                0x00003728       0x22 ./Application/Application_program.o
  .text.Buzzer_timeOutOff
-                0x00003742       0x1c ./Application/Application_program.o
-                0x00003742                Buzzer_timeOutOff
+                0x0000374a       0x1c ./Application/Application_program.o
+                0x0000374a                Buzzer_timeOutOff
  .text.DashBoard_DistanceShow
-                0x0000375e       0x1e ./Application/Application_program.o
+                0x00003766       0x1e ./Application/Application_program.o
  .text.DashBoard_DistanceHide
-                0x0000377c       0x1e ./Application/Application_program.o
- .text.main     0x0000379a       0x12 ./main.o
-                0x0000379a                main
- .text.libgcc   0x000037ac        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000037ac        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000037ac        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000037ac       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000037ac                __prologue_saves__
- .text.libgcc   0x000037e4       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000037e4                __epilogue_restores__
+                0x00003784       0x1e ./Application/Application_program.o
+ .text.main     0x000037a2       0x12 ./main.o
+                0x000037a2                main
+ .text.libgcc   0x000037b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000037b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000037b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000037b4       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x000037b4                __prologue_saves__
+ .text.libgcc   0x000037ec       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x000037ec                __epilogue_restores__
  .text.avr-libc
-                0x0000381a       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
-                0x0000381a                itoa
+                0x00003822       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
+                0x00003822                itoa
  .text.avr-libc
-                0x0000385c       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x0000385c                strrev
- .text.libgcc   0x0000387c       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000387c                __udivmodhi4
-                0x000038a4                . = ALIGN (0x2)
+                0x00003864       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00003864                strrev
+ .text.libgcc   0x00003884       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00003884                __udivmodhi4
+                0x000038ac                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000038a4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000038a4                exit
-                0x000038a4                _exit
+ .fini9         0x000038ac        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000038ac                exit
+                0x000038ac                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -506,11 +506,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000038a4        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000038ac        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000038a8                _etext = .
+                0x000038b0                _etext = .
 
-.data           0x00800060       0x76 load address 0x000038a8
+.data           0x00800060       0x76 load address 0x000038b0
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -628,8 +628,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x008000e4        0x1 ./Application/Application_program.o
  *(COMMON)
                 0x008000e5                PROVIDE (__bss_end, .)
-                0x000038a8                __data_load_start = LOADADDR (.data)
-                0x0000391e                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000038b0                __data_load_start = LOADADDR (.data)
+                0x00003926                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008000e5        0x0
                 0x008000e5                PROVIDE (__noinit_start, .)
