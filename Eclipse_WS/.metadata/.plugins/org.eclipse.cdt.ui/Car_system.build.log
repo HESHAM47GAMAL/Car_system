@@ -1,10 +1,5 @@
-09:22:36 **** Incremental Build of configuration Debug for project Car_system ****
+12:42:27 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
-Building file: ../Application/Application_program.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Application/Application_program.d" -MT"Application/Application_program.o" -c -o "Application/Application_program.o" "../Application/Application_program.c"
-Finished building: ../Application/Application_program.c
- 
 Building target: Car_system.elf
 Invoking: AVR C Linker
 avr-gcc -Wl,-Map,Car_system.map -mmcu=atmega16 -o "Car_system.elf"  ./MCAL/TIMER0/TIMER0_config.o ./MCAL/TIMER0/TIMER0_program.o  ./MCAL/GPIO/GPIO_program.o  ./MCAL/EXT_INT/EXT_INT_program.o  ./HAL/LED/LED_program.o  ./HAL/LCD/LCD_program.o  ./HAL/Buzzer/Buzzer_program.o  ./HAL/BUTTON/BUTTON_program.o  ./Application/Application_program.o  ./main.o   
@@ -13,6 +8,10 @@ Finished building target: Car_system.elf
 Invoking: AVR Create Extended Listing
 avr-objdump -h -S Car_system.elf  >"Car_system.lss"
 Finished building: Car_system.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Car_system.elf  "Car_system.hex"
+Finished building: Car_system.hex
  
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 Car_system.elf
@@ -30,5 +29,5 @@ Data:        103 bytes (10.1% Full)
 Finished building: sizedummy
  
 
-09:22:37 Build Finished. 0 errors, 0 warnings. (took 896ms)
+12:42:28 Build Finished. 0 errors, 0 warnings. (took 714ms)
 

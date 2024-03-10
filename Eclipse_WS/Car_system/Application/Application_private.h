@@ -87,8 +87,20 @@ static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
 static void Braking_Button_Handling(void);
 
 
-
+/*
+*   @brief : this function is used to set buzzer high and initialize timeout period 
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 static void Buzzer_NotifySound(void);
 
-
+/*
+*   @brief : this function is program that will be called (ISR) when Timeout happen as turn buzzer off
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 void Buzzer_timeOutOff(void);

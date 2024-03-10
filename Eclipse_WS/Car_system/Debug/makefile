@@ -51,6 +51,9 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 LSS += \
 Car_system.lss \
 
+FLASH_IMAGE += \
+Car_system.hex \
+
 SIZEDUMMY += \
 sizedummy \
 
@@ -75,6 +78,12 @@ Car_system.lss: Car_system.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+Car_system.hex: Car_system.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Car_system.elf  "Car_system.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 sizedummy: Car_system.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega16 Car_system.elf
@@ -83,10 +92,10 @@ sizedummy: Car_system.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Car_system.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Car_system.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 
