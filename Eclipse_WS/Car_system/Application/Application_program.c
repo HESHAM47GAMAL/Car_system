@@ -65,6 +65,11 @@ void App_Init(void)
     LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN, LED_OFF);
     LED_OnOffPositiveLogic(Yellow_LED_PORT,Yellow_LED_PIN, LED_OFF);
 
+    /*  initialize Timer0   */
+    Timer0_Init();
+
+    /*  Set callback function that will called when Timeout happen to turn of buzzer and handle anything another    */
+    Timer0_SetCallBack(Buzzer_timeOutOff);
 
     /*  Intialize Bash Board for Car*/
     DashBoard_Init();
@@ -146,7 +151,9 @@ static void Buttons_Update(void)
         if(GearBox_IsStillPressed == NO_Condition)
         {
             /*  make buzzer pin high to give sound notify to gearbox change happen*/
-            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+            //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+            Buzzer_NotifySound();
+
 
             GearBox_IsStillPressed = YES_Condition ;
             GearBox_Current_State ++ ;
@@ -159,7 +166,7 @@ static void Buttons_Update(void)
             DashBoard_Update_GearBox_state(GearBox_Current_State);
 
             /*  make buzzer pin low as this give sound once when button pressed and if still pressing do nothing    */
-            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+            //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
         }
         
     }
@@ -184,7 +191,10 @@ static void Buttons_Update(void)
             if(ACCS_IsStillPressed == NO_Condition)
             {
                 /*  make buzzer pin high to give sound notify to gearbox change happen*/
-                Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+                //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+                Buzzer_NotifySound();
+
+
 
                 ACCS_IsStillPressed = YES_Condition ;
                 if(ACCS_Currnet_state == ACCS_Disable ) 
@@ -196,7 +206,7 @@ static void Buttons_Update(void)
                 DashBoard_Update_ACCS_State(ACCS_Currnet_state);
                 
                 /*  make buzzer pin low as this give sound once when button pressed and if still pressing do nothing    */
-                Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+                //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
             }
         }
         else
@@ -208,8 +218,8 @@ static void Buttons_Update(void)
 
     if((GearBox_Current_State == D_GearBox) || (GearBox_Current_State == R_GearBox))
     {
-        // /*  This variable used to carry if button is still pressed after last pressed as any action taken once with first step and if still press nothing happen    */
-        // static uint8 Acccelerate_IsStillPressed = NO_Condition;
+        /*  This variable used to carry if button is still pressed after last pressed as give buzzer sound only once at the begin of press    */
+        static uint8 Acccelerate_IsStillPressed = NO_Condition;
         /*  Take current state for button  to check if still pressed*/
         uint8 Acccelerate_BTN_State = BUTTON_GetValue(Accelerate_BTN_PORT,Accelerate_BTN_PIN);
         
@@ -217,12 +227,18 @@ static void Buttons_Update(void)
         {
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_ON);
             /*  make buzzer pin high to give sound and will give sound until release button  */
-            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+            //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+            if(Acccelerate_IsStillPressed == NO_Condition)
+            {
+                Buzzer_NotifySound();
+                Acccelerate_IsStillPressed = YES_Condition ;
+            }
         }
         else
         {
             /*  make buzzer pin low to stop sound of buzzer    */
-            Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+            //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+            Acccelerate_IsStillPressed = NO_Condition;
             LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
         }
     }
@@ -260,7 +276,10 @@ static void Braking_Button_Handling(void)
     if(Braking_BTN_State == BTN_Released_State)
     {
         /*  make buzzer pin high to give sound and will give sound until release button  */
-        Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+        //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+        Buzzer_NotifySound();
+
+
 
         /*  So when I release utton will make Rising Edge so I need to make setup to detect this state to turn led off  */
         INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN);
@@ -283,10 +302,31 @@ static void Braking_Button_Handling(void)
     else if(Braking_BTN_State == BTN_Pressed_State)
     {
         /*  make buzzer pin low to stop sound of buzzer    */
-        Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+        //Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
 
         INT1_init(FALLING_EDGE_TRIGGER,INPUT_PIN);
         Braking_BTN_State = BTN_Released_State;
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_OFF);
     }
+}
+
+
+static void Buzzer_NotifySound(void)
+{
+    /*  initialize Timer register with zero value   */
+    Timer0_UpdateValue(0);
+    /*  Turn Buzzer on  */
+    Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_ON);
+    /*  Timer provide clock  */
+    Timer0_ProvideClock();
+
+    /*  There are another function after timeout will turn buzzer off and stop clock for timer register  */
+
+}
+
+
+void Buzzer_timeOutOff(void)
+{
+    Buzzer_OnOffPositiveLogic(Buzzer_PORT,Buzzer_PIN,Buzzer_OFF);
+    Timer0_StopClock();
 }

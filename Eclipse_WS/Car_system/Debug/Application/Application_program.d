@@ -19,6 +19,9 @@ Application/Application_program.o Application/Application_program.o:  \
   ../Application/../MCAL/EXT_INT/EXT_INT_interface.h \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
+  ../Application/../MCAL/TIMER0/TIMER0_interface.h \
+  ../Application/../MCAL/TIMER0/../../SERVICE/STD_TYPES.h \
+  ../Application/../MCAL/TIMER0/TIMER0_config.h \
   ../Application/Application_private.h \
   ../Application/../SERVICE/STD_TYPES.h ../Application/../SERVICE/IVT.h
 
@@ -59,6 +62,12 @@ Application/Application_program.o Application/Application_program.o:  \
 ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h:
 
 ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h:
+
+../Application/../MCAL/TIMER0/TIMER0_interface.h:
+
+../Application/../MCAL/TIMER0/../../SERVICE/STD_TYPES.h:
+
+../Application/../MCAL/TIMER0/TIMER0_config.h:
 
 ../Application/Application_private.h:
 

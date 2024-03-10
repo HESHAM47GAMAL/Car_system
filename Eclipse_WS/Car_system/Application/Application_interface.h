@@ -23,6 +23,7 @@
 #include "../Hal/Buzzer/Buzzer_interface.h"
 
 #include "../MCAL/EXT_INT/EXT_INT_interface.h"
+#include "../MCAL/TIMER0/TIMER0_interface.h"
 
 
 /**************************                   Definitions                   **************************/

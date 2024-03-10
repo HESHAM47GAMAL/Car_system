@@ -1,4 +1,4 @@
-15:07:57 **** Incremental Build of configuration Debug for project Car_system ****
+09:22:36 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
 Building file: ../Application/Application_program.c
 Invoking: AVR Compiler
@@ -7,7 +7,7 @@ Finished building: ../Application/Application_program.c
  
 Building target: Car_system.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,Car_system.map -mmcu=atmega16 -o "Car_system.elf"  ./MCAL/GPIO/GPIO_program.o  ./MCAL/EXT_INT/EXT_INT_program.o  ./HAL/LED/LED_program.o  ./HAL/LCD/LCD_program.o  ./HAL/Buzzer/Buzzer_program.o  ./HAL/BUTTON/BUTTON_program.o  ./Application/Application_program.o  ./main.o   
+avr-gcc -Wl,-Map,Car_system.map -mmcu=atmega16 -o "Car_system.elf"  ./MCAL/TIMER0/TIMER0_config.o ./MCAL/TIMER0/TIMER0_program.o  ./MCAL/GPIO/GPIO_program.o  ./MCAL/EXT_INT/EXT_INT_program.o  ./HAL/LED/LED_program.o  ./HAL/LCD/LCD_program.o  ./HAL/Buzzer/Buzzer_program.o  ./HAL/BUTTON/BUTTON_program.o  ./Application/Application_program.o  ./main.o   
 Finished building target: Car_system.elf
  
 Invoking: AVR Create Extended Listing
@@ -20,10 +20,10 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   14074 bytes (85.9% Full)
+Program:   14496 bytes (88.5% Full)
 (.text + .data + .bootloader)
 
-Data:        100 bytes (9.8% Full)
+Data:        103 bytes (10.1% Full)
 (.data + .bss + .noinit)
 
 

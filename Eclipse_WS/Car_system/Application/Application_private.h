@@ -87,3 +87,8 @@ static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
 static void Braking_Button_Handling(void);
 
 
+
+static void Buzzer_NotifySound(void);
+
+
+void Buzzer_timeOutOff(void);
