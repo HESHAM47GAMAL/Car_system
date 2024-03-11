@@ -127,7 +127,7 @@ void A_APPLICATION_VOID_BRAKES(void){
  * THIS FUNCTION TOGGLES THE ACCS ON AND OFF WITH ITS OWN LED .							  */
 /*--------------------------------------------------------------------------------------------*/
 
-void A_APPLICATION_VOID_CCS(void){
+void A_APPLICATION_VOID_ACCS(void){
 
 	uint8 temp = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
 	static uint8 state = LOGIC_LOW;
@@ -259,7 +259,7 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 		TEMP = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
 		uint8 static STATE2 = E_CCS_OFF;
 		uint8 static BTN_STATE = BTN_Pressed_State;
-		A_APPLICATION_VOID_CCS();
+		A_APPLICATION_VOID_ACCS();
 		if (TEMP == BTN_Pressed_State) {
 
 			if (BTN_STATE == BTN_Pressed_State) {
