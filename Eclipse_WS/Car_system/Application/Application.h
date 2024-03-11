@@ -53,7 +53,7 @@
 /*   FUNCTION PROTOTYPES   */
 /*--------------------------------------------------------------------------------------------*/
 void A_APPLICATION_VOID_ACCELERATE(void);
-//void A_APPLICATION_VOID_CCS(void);
+void A_APPLICATION_VOID_ACCS(void);
 void init(void);
 void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void);
 void A_APPLICATION_VOID_LCD_STATICS(void);

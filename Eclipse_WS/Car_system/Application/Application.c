@@ -110,11 +110,9 @@ void A_APPLICATION_VOID_BRAKES(void){
 	switch (TEMP) {
 				case BTN_Pressed_State:
 					LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,LOGIC_HIGH);
-					A_APPLICATION_VOID_BUZZER_BEEP(BRK_BTN_PORT,BRK_BTN_PIN);
 					break;
 				case BTN_Released_State:
 					LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,LOGIC_LOW);
-					A_APPLICATION_VOID_BUZZER_BEEP(BRK_BTN_PORT,BRK_BTN_PIN);
 					break;
 				default:
 					LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,LOGIC_LOW);
@@ -129,21 +127,21 @@ void A_APPLICATION_VOID_BRAKES(void){
  * THIS FUNCTION TOGGLES THE ACCS ON AND OFF WITH ITS OWN LED .							  */
 /*--------------------------------------------------------------------------------------------*/
 
-//void A_APPLICATION_VOID_CCS(void){
+void A_APPLICATION_VOID_CCS(void){
 
-//	uint8 temp = BUTTON_GetValue(CCS_BTN_PORT,CCS_BTN_PIN);
-//	static uint8 state = LOGIC_LOW;
-//	if (temp == BTN_Pressed_State) {
-//		if (state == BTN_Pressed_State) {
-//			GPIO_TogglePin(GRN_LED_PORT,GRN_LED_PIN);
-//			state = BTN_Released_State;
-//		}
-//	}
-//	else
-//	{
-//		state = BTN_Pressed_State;
-//	}
-//}
+	uint8 temp = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
+	static uint8 state = LOGIC_LOW;
+	if (temp == BTN_Pressed_State) {
+		if (state == BTN_Pressed_State) {
+			GPIO_TogglePin(GRN_LED_PORT,GRN_LED_PIN);
+			state = BTN_Released_State;
+		}
+	}
+	else
+	{
+		state = BTN_Pressed_State;
+	}
+}
 
 
 
@@ -261,6 +259,7 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 		TEMP = BUTTON_GetValue(ACCS_BTN_PORT,ACCS_BTN_PIN);
 		uint8 static STATE2 = E_CCS_OFF;
 		uint8 static BTN_STATE = BTN_Pressed_State;
+		A_APPLICATION_VOID_CCS();
 		if (TEMP == BTN_Pressed_State) {
 
 			if (BTN_STATE == BTN_Pressed_State) {
