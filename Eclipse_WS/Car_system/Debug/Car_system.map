@@ -559,11 +559,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .data.BatteryCharge
                 0x008000ca        0x8 ./HAL/LCD/LCD_program.o
                 0x008000ca                BatteryCharge
- .data.Braking_BTN_State.1514
+ .data.Braking_BTN_State.1516
                 0x008000d2        0x1 ./Application/Application_program.o
  *(.rodata)
  *(.rodata*)
- .rodata.C.22.1502
+ .rodata.C.22.1504
                 0x008000d3        0x3 ./Application/Application_program.o
  *(.gnu.linkonce.d*)
                 0x008000d6                . = ALIGN (0x2)
@@ -622,11 +622,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .bss.ACCS_Currnet_state
                 0x008000e1        0x1 ./Application/Application_program.o
                 0x008000e1                ACCS_Currnet_state
- .bss.Acccelerate_IsStillPressed.1455
+ .bss.Acccelerate_IsStillPressed.1457
                 0x008000e2        0x1 ./Application/Application_program.o
- .bss.ACCS_IsStillPressed.1453
+ .bss.ACCS_IsStillPressed.1455
                 0x008000e3        0x1 ./Application/Application_program.o
- .bss.GearBox_IsStillPressed.1451
+ .bss.GearBox_IsStillPressed.1453
                 0x008000e4        0x1 ./Application/Application_program.o
  *(COMMON)
                 0x008000e5                PROVIDE (__bss_end, .)

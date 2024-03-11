@@ -1,15 +1,69 @@
-17:33:35 **** Incremental Build of configuration Debug for project Car_system ****
+07:58:00 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
+Building file: ../MCAL/TIMER0/TIMER0_config.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MCAL/TIMER0/TIMER0_config.d" -MT"MCAL/TIMER0/TIMER0_config.o" -c -o "MCAL/TIMER0/TIMER0_config.o" "../MCAL/TIMER0/TIMER0_config.c"
+Finished building: ../MCAL/TIMER0/TIMER0_config.c
+ 
+Building file: ../MCAL/TIMER0/TIMER0_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MCAL/TIMER0/TIMER0_program.d" -MT"MCAL/TIMER0/TIMER0_program.o" -c -o "MCAL/TIMER0/TIMER0_program.o" "../MCAL/TIMER0/TIMER0_program.c"
+../MCAL/TIMER0/TIMER0_program.c: In function 'Timer0_SetCallBack':
+../MCAL/TIMER0/TIMER0_program.c:29: warning: function return types not compatible due to 'volatile'
+Finished building: ../MCAL/TIMER0/TIMER0_program.c
+ 
+Building file: ../MCAL/GPIO/GPIO_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MCAL/GPIO/GPIO_program.d" -MT"MCAL/GPIO/GPIO_program.o" -c -o "MCAL/GPIO/GPIO_program.o" "../MCAL/GPIO/GPIO_program.c"
+Finished building: ../MCAL/GPIO/GPIO_program.c
+ 
+Building file: ../MCAL/EXT_INT/EXT_INT_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MCAL/EXT_INT/EXT_INT_program.d" -MT"MCAL/EXT_INT/EXT_INT_program.o" -c -o "MCAL/EXT_INT/EXT_INT_program.o" "../MCAL/EXT_INT/EXT_INT_program.c"
+../MCAL/EXT_INT/EXT_INT_program.c: In function 'INT0_SetCallBack':
+../MCAL/EXT_INT/EXT_INT_program.c:56: warning: function return types not compatible due to 'volatile'
+../MCAL/EXT_INT/EXT_INT_program.c: In function 'INT1_SetCallBack':
+../MCAL/EXT_INT/EXT_INT_program.c:61: warning: function return types not compatible due to 'volatile'
+../MCAL/EXT_INT/EXT_INT_program.c: In function 'INT2_SetCallBack':
+../MCAL/EXT_INT/EXT_INT_program.c:66: warning: function return types not compatible due to 'volatile'
+Finished building: ../MCAL/EXT_INT/EXT_INT_program.c
+ 
+Building file: ../HAL/LED/LED_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HAL/LED/LED_program.d" -MT"HAL/LED/LED_program.o" -c -o "HAL/LED/LED_program.o" "../HAL/LED/LED_program.c"
+Finished building: ../HAL/LED/LED_program.c
+ 
+Building file: ../HAL/LCD/LCD_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HAL/LCD/LCD_program.d" -MT"HAL/LCD/LCD_program.o" -c -o "HAL/LCD/LCD_program.o" "../HAL/LCD/LCD_program.c"
+../HAL/LCD/LCD_program.c:20:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+In file included from ../HAL/LCD/LCD_program.c:21:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../HAL/LCD/LCD_program.c: In function 'LCD_intToString':
+../HAL/LCD/LCD_program.c:430: warning: pointer targets in passing argument 2 of 'itoa' differ in signedness
+Finished building: ../HAL/LCD/LCD_program.c
+ 
+Building file: ../HAL/Buzzer/Buzzer_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HAL/Buzzer/Buzzer_program.d" -MT"HAL/Buzzer/Buzzer_program.o" -c -o "HAL/Buzzer/Buzzer_program.o" "../HAL/Buzzer/Buzzer_program.c"
+Finished building: ../HAL/Buzzer/Buzzer_program.c
+ 
+Building file: ../HAL/BUTTON/BUTTON_program.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HAL/BUTTON/BUTTON_program.d" -MT"HAL/BUTTON/BUTTON_program.o" -c -o "HAL/BUTTON/BUTTON_program.o" "../HAL/BUTTON/BUTTON_program.c"
+Finished building: ../HAL/BUTTON/BUTTON_program.c
+ 
 Building file: ../Application/Application_program.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Application/Application_program.d" -MT"Application/Application_program.o" -c -o "Application/Application_program.o" "../Application/Application_program.c"
-../Application/Application_program.c: In function 'Braking_Button_Handling':
-../Application/Application_program.c:312: warning: implicit declaration of function 'tessst'
-../Application/Application_program.c: At top level:
-../Application/Application_program.c:360: warning: conflicting types for 'tessst'
-../Application/Application_program.c:312: warning: previous implicit declaration of 'tessst' was here
 ../Application/Application_private.h:115: warning: 'ACCS_CatchDistance' declared 'static' but never defined
 Finished building: ../Application/Application_program.c
+ 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+Finished building: ../main.c
  
 Building target: Car_system.elf
 Invoking: AVR C Linker
