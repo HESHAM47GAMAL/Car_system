@@ -24,6 +24,7 @@
 
 #include "../MCAL/EXT_INT/EXT_INT_interface.h"
 #include "../MCAL/TIMER0/TIMER0_interface.h"
+#include "../MCAL/ADC/ADC_interface.h"
 
 
 /**************************                   Definitions                   **************************/

@@ -71,6 +71,9 @@ void App_Init(void)
     /*  Set callback function that will called when Timeout happen to turn of buzzer and handle anything another    */
     Timer0_SetCallBack(Buzzer_timeOutOff);
 
+    /*  Initialize ADC to be used by Potentiometer to work as RADAR(Ultrasonic)*/
+    ADC_Init();
+    
     /*  Intialize Bash Board for Car*/
     DashBoard_Init();
 }
@@ -83,9 +86,11 @@ static void DashBoard_Init(void)
     LCD_MoveCursor(0,0);
     LCD_DisplayString((const uint8 * )"GearBox(N,D,R) : N");
 
+    /*  Display speed */
     LCD_MoveCursor(1,0);
     LCD_DisplayString((const uint8 * )"Speed : 0");
 
+    /*  Display state of Adaptive Cruise control  */
     LCD_MoveCursor(2,0);
     LCD_DisplayString((const uint8 * )"ACCS(ON,OFF) : OFF");
 

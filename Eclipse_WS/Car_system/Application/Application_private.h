@@ -36,6 +36,16 @@ static void Hanndle_GrearBox_N_State(void);
 static void Hanndle_GrearBox_R_State(void);
 
 
+/*
+*   @brief : this function used to handle Adaptive Cruise control sysytem will all condition available in statemachine 
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+static void Hanndle_GrearBox_D_State(void);
+
+
 
 /*
 *   @brief : this function used to initialize what will be displayed in DashBoard(LCD) 
