@@ -1,10 +1,10 @@
-15:01:44 **** Incremental Build of configuration Debug for project Car_system ****
+15:27:37 **** Incremental Build of configuration Debug for project Car_system ****
 make all 
 Building file: ../Application/Application_program.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Application/Application_program.d" -MT"Application/Application_program.o" -c -o "Application/Application_program.o" "../Application/Application_program.c"
 ../Application/Application_program.c: In function 'ACCS_CatchDistance':
-../Application/Application_program.c:391: warning: pointer targets in passing argument 1 of 'LCD_DisplayString' differ in signedness
+../Application/Application_program.c:400: warning: pointer targets in passing argument 1 of 'LCD_DisplayString' differ in signedness
 Finished building: ../Application/Application_program.c
  
 Building target: Car_system.elf
@@ -26,15 +26,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   16608 bytes (101.4% Full)
+Program:   16634 bytes (101.5% Full)
 (.text + .data + .bootloader)
 
-Data:        404 bytes (39.5% Full)
+Data:        408 bytes (39.8% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-15:01:45 Build Finished. 0 errors, 1 warnings. (took 1s.102ms)
+15:27:38 Build Finished. 0 errors, 1 warnings. (took 1s.172ms)
 

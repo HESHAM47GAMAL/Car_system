@@ -116,10 +116,23 @@ static void Buzzer_NotifySound(void);
 void Buzzer_timeOutOff(void);
 
 
-
-
+/*
+*   @brief : this function used to Show only "Distance : " in LCD
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 static void DashBoard_DistanceShow(void); 
 
+
+/*
+*   @brief : this function used to hide all data in last row by display white space "                  "
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
 static void DashBoard_DistanceHide(void);
 
 static void ACCS_CatchDistance(void);

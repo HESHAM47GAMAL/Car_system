@@ -31,6 +31,8 @@ enum ACCS_State {ACCS_Disable,ACCS_Enable};
 
 uint8 GearBox_Current_State = N_GearBox;
 uint8 ACCS_Currnet_state = ACCS_Disable;
+volatile float32 distance_ACCS = 0 ;
+
 
 void App_Init(void)
 {
@@ -380,7 +382,7 @@ static void DashBoard_DistanceHide(void)
 
 static void ACCS_CatchDistance(void)
 {
-    /*  Here I need to disable interrupt as I don't know when I press braking button 
+    /*  ⚠️🙆‍♂️🚩Here I need to disable interrupt as I don't know when I press braking button 
     * as may be before printing point(.) and number after point  press braking button and this lead to call DashBoard_DistanceHide() function
     * and this make cursor position that I make disable  be at last colimn in last row and will return here to continue this code here 
     * so this lead to make data overwrite in LCD 
@@ -388,7 +390,8 @@ static void ACCS_CatchDistance(void)
     */
     cli();
     volatile uint16 Adc_value_pure = ADC_ReadChannelSingleConvertion(ADC_Channel_0);
-    float32 distance_ACCS = (Adc_value_pure * 10) / 1023.0 ; 
+    distance_ACCS = (Adc_value_pure * 10) / 1023.0 ; 
+    /*  Here trying to get first number after Sign  */
     volatile uint8 distance_after_point = ( (uint8)(distance_ACCS * 10) )  % 10;
     LCD_MoveCursor(3,11);
 	LCD_intToString((uint8)distance_ACCS);
