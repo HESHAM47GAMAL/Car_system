@@ -377,24 +377,23 @@ static void DashBoard_DistanceHide(void)
 }
 
 
-
+/*  Don't forget that I want to display first number after sign '.'  */
 static void ACCS_CatchDistance(void)
 {
-    /*  Here I need to disable interrupt as I don't know when I press braking button 
-    * as may be before printing point(.) and number after point  press braking button and this lead to call DashBoard_DistanceHide() function
-    * and this make cursor position that I make disable  be at last colimn in last row and will return here to continue this code here 
-    * so this lead to make data overwrite in LCD 
-    * "this is one scenario from a lot of scenarios "
-    */
     cli();
-    volatile uint16 Adc_value_pure = ADC_ReadChannelSingleConvertion(ADC_Channel_0);
-    float32 distance_ACCS = (Adc_value_pure * 10) / 1023.0 ; 
-    volatile uint8 distance_after_point = ( (uint8)(distance_ACCS * 10) )  % 10;
+    uint8 Adc_value_pure = ADC_ReadChannelSingleConvertion(ADC_Channel_0);
+    uint8 distance_ACCS = (Adc_value_pure * 10) / 1024 ; 
+
     LCD_MoveCursor(3,11);
-	LCD_intToString((uint8)distance_ACCS);
-	LCD_DisplayCharacter('.');
-    LCD_intToString(distance_after_point);
-    LCD_DisplayString("M ");
+    if(distance_ACCS < 10)
+    {
+        LCD_DisplayCharacter(distance_ACCS);
+        LCD_DisplayCharacter(' ');
+    }
+    else 
+    {
+        LCD_DisplayString("10");
+    }
     sei();
 }
 

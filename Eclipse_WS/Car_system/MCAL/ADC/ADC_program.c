@@ -20,6 +20,7 @@
 
 /**************************                   Extern Global variable                   **************************/
 extern ADC_ConfigType  ADC_ConfigTypeParam ;
+    uint16 ADC_conversion_value = 0 ;
 
 #if (ADC_Interrupt_State == ADC_Interrupt_Enable)
 
@@ -93,7 +94,6 @@ void ADC_Init(void)
 
 uint16 ADC_ReadChannelSingleConvertion(uint8 Channel_NUM)
 {
-    uint16 ADC_conversion_value = 0 ;
     ADC_OnlyStartConversionGeneral(Channel_NUM);
     /*  wait uintil ADIF (conversion flag) in ADCSRA register convert from Low to High As that mean conversion completed  */
     while (BIT_IS_CLEAR(ADCSRA,ADIF));

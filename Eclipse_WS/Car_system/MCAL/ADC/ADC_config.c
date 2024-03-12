@@ -17,7 +17,7 @@
 
 
 ADC_ConfigType  ADC_ConfigTypeParam ={
-    Free_Running_Mode ,  /*    Choose Mode of conversion   */
+    Single_Conversion_Mode ,  /*    Choose Mode of conversion   */
     AVCC ,        /*    Choose volatge reference used in ADC Conversion     */
     ADC_Adjust_Right ,        /*    Choose Storing of 10 bit ADC value adjusted in 16 bits  */
     ADC_Divide_By_64 ,        /*    Choose prescaler for MCU clock as ADC circuit need to get 50 : 200 KHZ clock to Work correctly  */
