@@ -313,7 +313,7 @@ void A_APPLICATION_VOID_LCD_STATICS(void){
 	LCD_DisplayString((uint8*)"ACCS : OFF");
 
 	LCD_MoveCursor(1,0);
-	LCD_DisplayString((uint8*)"Gear (R,N,D) :");
+	LCD_DisplayString((uint8*)"Gear (R,N,D) : N");
 
 	LCD_MoveCursor(2,0);
 	LCD_DisplayString((uint8*)"Distance : ");
