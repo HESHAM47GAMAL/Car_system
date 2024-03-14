@@ -17,7 +17,7 @@
 #include "../../MCAL/GPIO/GPIO_interface.h"
 #include <stdlib.h>
 #include <string.h>
-#define F_CPU 16000000UL
+
 #include <util/delay.h>
 
 /**************************                   Static Variables                  **************************/

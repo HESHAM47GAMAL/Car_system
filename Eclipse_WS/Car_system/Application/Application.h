@@ -52,17 +52,26 @@
 /*--------------------------------------------------------------------------------------------*/
 /*   FUNCTION PROTOTYPES   */
 /*--------------------------------------------------------------------------------------------*/
-void A_APPLICATION_VOID_ACCELERATE(void);
-void A_APPLICATION_VOID_ACCS(void);
+
 void init(void);
-void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void);
 void A_APPLICATION_VOID_LCD_STATICS(void);
-void A_APPLICATION_VOID_ACCS_CHANGE(void);
-void A_APPLICATION_VOID_BUZZER_BEEP(uint8,uint8);
-void A_APPLICATION_VOID_LCD_DISTANCE(void);
 
 
+uint8 A_APPLICATION_UINT8_BTN_CHECK(uint8, uint8);
+void A_APPLICATION_VOID_BTN_TGL_ACTION(uint8, uint8);
+void A_APPLICATION_VOID_ACCELERATE(uint8);
+void A_APPLICATION_VOID_BRAKE(uint8);
+void A_APPLICATION_VOID_ACCS(void);
+void A_APPLICATION_VOID_ACCS_TGL(uint8,uint8);
+void A_APPLICATION_VOID_BTN_ACTION(void);
+void A_APPLICATION_VOID_BUZZER_BEEP_ACL(uint8, uint8);
+void A_APPLICATION_VOID_BUZZER_BEEP_BRK(uint8, uint8);
+void A_APPLICATION_VOID_BUZZER_BEEP_ACCS(uint8, uint8);
+void A_APPLICATION_VOID_BUZZER_BEEP_GEAR(uint8, uint8);
+void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void);
 
+
+void A_APPLICATION_VOID_ACCS_LCD(void);
 
 
 
