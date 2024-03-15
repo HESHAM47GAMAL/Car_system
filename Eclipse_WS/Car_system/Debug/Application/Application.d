@@ -1,6 +1,6 @@
 Application/Application.o Application/Application.o:  \
  ../Application/Application.c ../Application/../SERVICE/COMMON_MACROS.h \
-  ../Application/../SERVICE/STD_TYPES.h \
+  ../Application/../SERVICE/STD_TYPES.h ../Application/../SERVICE/IVT.h \
   ../Application/../HAL/BUTTON/BUTTON_interface.h \
   ../Application/../HAL/BUTTON/../../SERVICE/STD_TYPES.h \
   ../Application/../HAL/BUTTON/BUTTON_config.h \
@@ -16,6 +16,14 @@ Application/Application.o Application/Application.o:  \
   ../Application/../HAL/BUZZER/Buzzer_Interface.h \
   ../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h \
   ../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h \
+  ../Application/../MCAL/ADC/ADC_interface.h \
+  ../Application/../MCAL/ADC/../../SERVICE/STD_TYPES.h \
+  ../Application/../MCAL/ADC/../GPIO/GPIO_interface.h \
+  ../Application/../MCAL/ADC/ADC_config.h \
+  ../Application/../HAL/Potentiometer/POT_interface.h \
+  ../Application/../HAL/Potentiometer/../../SERVICE/STD_TYPES.h \
+  ../Application/../HAL/Potentiometer/POT_config.h \
+  ../Application/../HAL/Potentiometer/../../MCAL/GPIO/GPIO_interface.h \
   ../Application/../MCAL/EXT_INT/EXT_INT_interface.h \
   ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
   ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
@@ -25,6 +33,8 @@ Application/Application.o Application/Application.o:  \
 ../Application/../SERVICE/COMMON_MACROS.h:
 
 ../Application/../SERVICE/STD_TYPES.h:
+
+../Application/../SERVICE/IVT.h:
 
 ../Application/../HAL/BUTTON/BUTTON_interface.h:
 
@@ -55,6 +65,22 @@ Application/Application.o Application/Application.o:  \
 ../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h:
 
 ../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h:
+
+../Application/../MCAL/ADC/ADC_interface.h:
+
+../Application/../MCAL/ADC/../../SERVICE/STD_TYPES.h:
+
+../Application/../MCAL/ADC/../GPIO/GPIO_interface.h:
+
+../Application/../MCAL/ADC/ADC_config.h:
+
+../Application/../HAL/Potentiometer/POT_interface.h:
+
+../Application/../HAL/Potentiometer/../../SERVICE/STD_TYPES.h:
+
+../Application/../HAL/Potentiometer/POT_config.h:
+
+../Application/../HAL/Potentiometer/../../MCAL/GPIO/GPIO_interface.h:
 
 ../Application/../MCAL/EXT_INT/EXT_INT_interface.h:
 

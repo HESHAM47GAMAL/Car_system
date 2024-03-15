@@ -10,6 +10,8 @@ RM := rm -rf
 -include sources.mk
 -include MCAL/GPIO/subdir.mk
 -include MCAL/EXT_INT/subdir.mk
+-include MCAL/ADC/subdir.mk
+-include HAL/Potentiometer/subdir.mk
 -include HAL/LED/subdir.mk
 -include HAL/LCD/subdir.mk
 -include HAL/BUZZER/subdir.mk

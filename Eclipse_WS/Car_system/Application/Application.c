@@ -6,12 +6,15 @@
  */
 #include "../SERVICE/COMMON_MACROS.h"
 #include "../SERVICE/STD_TYPES.h"
+#include "../SERVICE/IVT.h"
 
 #include "../HAL/BUTTON/BUTTON_interface.h"
 #include "../HAL/LED/LED_interface.h"
 #include "../MCAL/GPIO/GPIO_interface.h"
 #include "../HAL/LCD/LCD_interface.h"
 #include "../HAL/BUZZER/Buzzer_Interface.h"
+#include "../MCAL/ADC/ADC_interface.h"
+#include "../HAL/Potentiometer/POT_interface.h"
 
 #include "../MCAL/EXT_INT/EXT_INT_interface.h"
 #include "Application.h"
@@ -40,6 +43,7 @@ enum CAR_STATE {
 uint8 ACCS_CURRENT_STATE = E_ACCS_OFF;
 uint8 GEARBOX_CURRENT_STATE = E_GEARBOX_NEUTRAL;
 uint8 CAR_CURRENT_STATE = E_CAR_IS_STOPPED;
+float32 ACCS_DISTANCE = 0;
 
 /*--------------------------------------------------------------------------------------------*/
 /*   						FUNCTION BODY FOR INITIALIZE FUNCITON,
@@ -62,7 +66,11 @@ void init(void){
 	/*enable global interrupt manually*/
 	SET_BIT(SREG,7);
 
+	 /*  Initialize ADC to be used by Potentiometer to work as RADAR(Ultrasonic)*/
+	 ADC_Init();
 
+	 /*  Intialize Potentiometer */
+	 POT_Init(ADC_Channel_0);
 
 
 
@@ -369,6 +377,7 @@ void A_APPLICATION_VOID_LCD_STATICS(void){
 /*--------------------------------------------------------------------------------------------*/
 
 void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
+	A_APPLICATION_VOID_ACCS_DISTANCE_READ();
 	// calling main BTN action function here
 	A_APPLICATION_VOID_BTN_ACTION();
 	uint8 TEMP;
@@ -417,9 +426,14 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 			LCD_MoveCursor(1,15);
 			LCD_DisplayString((uint8*)"D");
 
+
 			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
 			GEARBOX_CURRENT_STATE = E_GEARBOX_DRIVE;
+
 			A_APPLICATION_VOID_LCD_DISTANCE_SHOW();
+
+
+
 
 
 		}
@@ -466,4 +480,33 @@ void A_APPLICATION_VOID_LCD_DISTANCE_ERASE(void){
 	LCD_DisplayString((uint8*)"                       ");
 
 }
+/*--------------------------------------------------------------------------------------------*/
+/*   						FUNCTION BODY FOR DISTANCE READ,
+ * 			THIS FUNCTION READS DISTANCE FROM THE POTENTIOMETER AT ADC CHANNEL 0 .			 */
+/*--------------------------------------------------------------------------------------------*/
+
+void A_APPLICATION_VOID_ACCS_DISTANCE_READ(void){
+
+
+	    uint16 Adc_value_pure = ADC_ReadChannelSingleConvertion(ADC_Channel_0);
+	    ACCS_DISTANCE = (Adc_value_pure * 10) / 1023.0 ;
+	    /*  Here trying to get first number after Sign  */
+	    volatile uint8 distance_after_point = ( (uint8)(ACCS_DISTANCE * 10) )  % 10;
+if ((GEARBOX_CURRENT_STATE == E_GEARBOX_DRIVE)&&(ACCS_CURRENT_STATE == E_ACCS_ON)) {
+	    LCD_MoveCursor(2,11);
+	    LCD_intToString((uint8)ACCS_DISTANCE);
+	    LCD_DisplayCharacter('.');
+	    LCD_intToString(distance_after_point);
+	    LCD_DisplayString(" m");
+//	    LCD_MoveCursor(1,11);
+//	    LCD_intToString((uint8)ACCS_DISTANCE);
+//	    LCD_DisplayCharacter('.');
+//	    LCD_intToString(distance_after_point);
+//	    LCD_DisplayString(" m");
+
+}
+
+
+}
+
 

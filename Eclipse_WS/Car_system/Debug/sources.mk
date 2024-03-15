@@ -25,6 +25,8 @@ HAL/BUTTON \
 HAL/BUZZER \
 HAL/LCD \
 HAL/LED \
+HAL/Potentiometer \
+MCAL/ADC \
 MCAL/EXT_INT \
 MCAL/GPIO \
 . \
