@@ -359,7 +359,7 @@ void A_APPLICATION_VOID_LCD_STATICS(void){
 	LCD_DisplayString((uint8*)"Gear (R,N,D) : N");
 
 	LCD_MoveCursor(2,0);
-	LCD_DisplayString((uint8*)"Distance : ");
+	LCD_DisplayString((uint8*)"                      ");
 
 }
 
@@ -402,6 +402,7 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 			LCD_MoveCursor(1,15);
 			LCD_DisplayString((uint8*)"N");
 			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
+			A_APPLICATION_VOID_LCD_DISTANCE_ERASE();
 			GEARBOX_CURRENT_STATE = E_GEARBOX_NEUTRAL;
 			CAR_CURRENT_STATE = E_CAR_IS_STOPPED;
 
@@ -418,6 +419,9 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 
 			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
 			GEARBOX_CURRENT_STATE = E_GEARBOX_DRIVE;
+			A_APPLICATION_VOID_LCD_DISTANCE_SHOW();
+
+
 		}
 		break;
 	case E_GEARBOX_REVERSE:
@@ -432,7 +436,7 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 			GEARBOX_CURRENT_STATE = E_GEARBOX_REVERSE;
 
 			GPIO_WritePin(GRN_LED_PORT,GRN_LED_PIN,LOGIC_LOW);
-
+			A_APPLICATION_VOID_LCD_DISTANCE_ERASE();
 
 			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
 		}
@@ -442,6 +446,24 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 
 	}
 }
+/*--------------------------------------------------------------------------------------------*/
+/*   						FUNCTION BODY FOR DISTANCE SHOW,
+ * 			THIS FUNCTION SHOWS THE DISTANCE OFF THE LCD .							  */
+/*--------------------------------------------------------------------------------------------*/
 
+void A_APPLICATION_VOID_LCD_DISTANCE_SHOW(void){
+	LCD_MoveCursor(2,0);
+	LCD_DisplayString((uint8*)"Distance : ");
 
+}
+/*--------------------------------------------------------------------------------------------*/
+/*   						FUNCTION BODY FOR DISTANCE ERASE,
+ * 			THIS FUNCTION ERAES THE DISTANCE OFF THE LCD .							  */
+/*--------------------------------------------------------------------------------------------*/
+
+void A_APPLICATION_VOID_LCD_DISTANCE_ERASE(void){
+	LCD_MoveCursor(2,0);
+	LCD_DisplayString((uint8*)"                       ");
+
+}
 
