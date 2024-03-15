@@ -33,7 +33,6 @@ int main()
 	H_Buzzer_Void_BuzzerInit();
 	while(1)
 	{
-		 A_APPLICATION_VOID_BTN_ACTION();
 		 A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE();
 
 	}

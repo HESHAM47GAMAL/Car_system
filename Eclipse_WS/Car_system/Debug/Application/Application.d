@@ -16,6 +16,10 @@ Application/Application.o Application/Application.o:  \
   ../Application/../HAL/BUZZER/Buzzer_Interface.h \
   ../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h \
   ../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h \
+  ../Application/../MCAL/EXT_INT/EXT_INT_interface.h \
+  ../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h \
+  ../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h \
+  ../Application/../MCAL/EXT_INT/EXT_INT_private.h \
   ../Application/Application.h
 
 ../Application/../SERVICE/COMMON_MACROS.h:
@@ -51,5 +55,13 @@ Application/Application.o Application/Application.o:  \
 ../Application/../HAL/BUZZER/../../SERVICE/STD_TYPES.h:
 
 ../Application/../HAL/BUZZER/../../MCAL/GPIO/GPIO_interface.h:
+
+../Application/../MCAL/EXT_INT/EXT_INT_interface.h:
+
+../Application/../MCAL/EXT_INT/../../SERVICE/STD_TYPES.h:
+
+../Application/../MCAL/EXT_INT/../GPIO/GPIO_interface.h:
+
+../Application/../MCAL/EXT_INT/EXT_INT_private.h:
 
 ../Application/Application.h:

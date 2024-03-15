@@ -26,6 +26,7 @@
 #define MCUCSR             (* (volatile uint8 *) (0x54))
 #define GICR               (* (volatile uint8 *) (0x5B))
 #define GIFR               (* (volatile uint8 *) (0x5A))
+#define SREG			   (* (volatile uint8 *) (0x5F))
 
 #define ISC00                   0
 #define ISC10                   2

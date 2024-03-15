@@ -18,6 +18,7 @@
 
 #include "../../SERVICE/STD_TYPES.h"
 #include "../GPIO/GPIO_interface.h"
+#include "EXT_INT_private.h"
 
 
 /**************************                   Types Declaration                   **************************/

@@ -12,7 +12,7 @@
 
 
 /**************************                   INCLUDES                   **************************/
-#include "EXT_INT_private.h"
+
 #include "EXT_INT_interface.h"
 
 #include "../GPIO/GPIO_interface.h"

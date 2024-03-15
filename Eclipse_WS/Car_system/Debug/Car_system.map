@@ -155,7 +155,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x3b9c
+.text           0x00000000     0x3c30
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -413,72 +413,75 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.BUTTON_GetValue
                 0x0000356a       0x20 ./HAL/BUTTON/BUTTON_program.o
                 0x0000356a                BUTTON_GetValue
- .text.init     0x0000358a       0x62 ./Application/Application.o
+ .text.init     0x0000358a       0x70 ./Application/Application.o
                 0x0000358a                init
  .text.A_APPLICATION_VOID_ACCELERATE
-                0x000035ec       0x26 ./Application/Application.o
-                0x000035ec                A_APPLICATION_VOID_ACCELERATE
- .text.A_APPLICATION_VOID_BRAKE
-                0x00003612       0x26 ./Application/Application.o
-                0x00003612                A_APPLICATION_VOID_BRAKE
+                0x000035fa       0x26 ./Application/Application.o
+                0x000035fa                A_APPLICATION_VOID_ACCELERATE
+ .text.A_APPLICATION_VOID_BRAKE_ON
+                0x00003620       0x20 ./Application/Application.o
+                0x00003620                A_APPLICATION_VOID_BRAKE_ON
+ .text.A_APPLICATION_VOID_BRAKE_OFF
+                0x00003640       0x20 ./Application/Application.o
+                0x00003640                A_APPLICATION_VOID_BRAKE_OFF
  .text.A_APPLICATION_VOID_ACCS
-                0x00003638       0x16 ./Application/Application.o
-                0x00003638                A_APPLICATION_VOID_ACCS
+                0x00003660       0x16 ./Application/Application.o
+                0x00003660                A_APPLICATION_VOID_ACCS
  .text.A_APPLICATION_UINT8_BTN_CHECK
-                0x0000364e       0x56 ./Application/Application.o
-                0x0000364e                A_APPLICATION_UINT8_BTN_CHECK
+                0x00003676       0x56 ./Application/Application.o
+                0x00003676                A_APPLICATION_UINT8_BTN_CHECK
  .text.A_APPLICATION_VOID_BTN_TGL_ACTION
-                0x000036a4       0x3a ./Application/Application.o
-                0x000036a4                A_APPLICATION_VOID_BTN_TGL_ACTION
+                0x000036cc       0x3a ./Application/Application.o
+                0x000036cc                A_APPLICATION_VOID_BTN_TGL_ACTION
  .text.A_APPLICATION_VOID_ACCS_TGL
-                0x000036de       0x5a ./Application/Application.o
-                0x000036de                A_APPLICATION_VOID_ACCS_TGL
+                0x00003706       0x6c ./Application/Application.o
+                0x00003706                A_APPLICATION_VOID_ACCS_TGL
  .text.A_APPLICATION_VOID_BTN_ACTION
-                0x00003738       0x6c ./Application/Application.o
-                0x00003738                A_APPLICATION_VOID_BTN_ACTION
+                0x00003772       0x8c ./Application/Application.o
+                0x00003772                A_APPLICATION_VOID_BTN_ACTION
  .text.A_APPLICATION_VOID_BUZZER_BEEP_ACL
-                0x000037a4       0x44 ./Application/Application.o
-                0x000037a4                A_APPLICATION_VOID_BUZZER_BEEP_ACL
+                0x000037fe       0x44 ./Application/Application.o
+                0x000037fe                A_APPLICATION_VOID_BUZZER_BEEP_ACL
  .text.A_APPLICATION_VOID_BUZZER_BEEP_BRK
-                0x000037e8       0x44 ./Application/Application.o
-                0x000037e8                A_APPLICATION_VOID_BUZZER_BEEP_BRK
+                0x00003842       0x44 ./Application/Application.o
+                0x00003842                A_APPLICATION_VOID_BUZZER_BEEP_BRK
  .text.A_APPLICATION_VOID_BUZZER_BEEP_ACCS
-                0x0000382c       0x54 ./Application/Application.o
-                0x0000382c                A_APPLICATION_VOID_BUZZER_BEEP_ACCS
+                0x00003886       0x54 ./Application/Application.o
+                0x00003886                A_APPLICATION_VOID_BUZZER_BEEP_ACCS
  .text.A_APPLICATION_VOID_ACCS_LCD
-                0x00003880       0x56 ./Application/Application.o
-                0x00003880                A_APPLICATION_VOID_ACCS_LCD
+                0x000038da       0x60 ./Application/Application.o
+                0x000038da                A_APPLICATION_VOID_ACCS_LCD
  .text.A_APPLICATION_VOID_BUZZER_BEEP_GEAR
-                0x000038d6       0x44 ./Application/Application.o
-                0x000038d6                A_APPLICATION_VOID_BUZZER_BEEP_GEAR
+                0x0000393a       0x44 ./Application/Application.o
+                0x0000393a                A_APPLICATION_VOID_BUZZER_BEEP_GEAR
  .text.A_APPLICATION_VOID_LCD_STATICS
-                0x0000391a       0x3e ./Application/Application.o
-                0x0000391a                A_APPLICATION_VOID_LCD_STATICS
+                0x0000397e       0x3e ./Application/Application.o
+                0x0000397e                A_APPLICATION_VOID_LCD_STATICS
  .text.A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE
-                0x00003958      0x12a ./Application/Application.o
-                0x00003958                A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE
- .text.main     0x00003a82       0x1e ./main.o
-                0x00003a82                main
- .text.libgcc   0x00003aa0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00003aa0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00003aa0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00003aa0       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00003aa0                __prologue_saves__
- .text.libgcc   0x00003ad8       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00003ad8                __epilogue_restores__
+                0x000039bc      0x15e ./Application/Application.o
+                0x000039bc                A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE
+ .text.main     0x00003b1a       0x1a ./main.o
+                0x00003b1a                main
+ .text.libgcc   0x00003b34        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00003b34        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00003b34        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00003b34       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00003b34                __prologue_saves__
+ .text.libgcc   0x00003b6c       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00003b6c                __epilogue_restores__
  .text.avr-libc
-                0x00003b0e       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
-                0x00003b0e                itoa
+                0x00003ba2       0x42 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
+                0x00003ba2                itoa
  .text.avr-libc
-                0x00003b50       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x00003b50                strrev
- .text.libgcc   0x00003b70       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x00003b70                __udivmodhi4
-                0x00003b98                . = ALIGN (0x2)
+                0x00003be4       0x20 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00003be4                strrev
+ .text.libgcc   0x00003c04       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00003c04                __udivmodhi4
+                0x00003c2c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00003b98        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00003b98                exit
-                0x00003b98                _exit
+ .fini9         0x00003c2c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00003c2c                exit
+                0x00003c2c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -497,11 +500,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00003b98        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00003c2c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00003b9c                _etext = .
+                0x00003c30                _etext = .
 
-.data           0x00800060       0x6c load address 0x00003b9c
+.data           0x00800060       0x6c load address 0x00003c30
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -543,17 +546,19 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .data.BatteryCharge
                 0x008000c2        0x8 ./HAL/LCD/LCD_program.o
                 0x008000c2                BatteryCharge
- .data.STATE.1575
+ .data.GEARBOX_CURRENT_STATE
                 0x008000ca        0x1 ./Application/Application.o
+                0x008000ca                GEARBOX_CURRENT_STATE
+ .data.STATE.1624
+                0x008000cb        0x1 ./Application/Application.o
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
                 0x008000cc                . = ALIGN (0x2)
- *fill*         0x008000cb        0x1 00
                 0x008000cc                _edata = .
                 0x008000cc                PROVIDE (__data_end, .)
 
-.bss            0x008000cc       0x13
+.bss            0x008000cc       0x15
                 0x008000cc                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x008000cc        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -595,39 +600,45 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x008000d2        0x1 ./HAL/LCD/LCD_program.o
  .bss.col_global
                 0x008000d3        0x1 ./HAL/LCD/LCD_program.o
- .bss.BTN_STATE.1448
+ .bss.ACCS_CURRENT_STATE
                 0x008000d4        0x1 ./Application/Application.o
- .bss.BTN_STATE.1463
+                0x008000d4                ACCS_CURRENT_STATE
+ .bss.CAR_CURRENT_STATE
                 0x008000d5        0x1 ./Application/Application.o
- .bss.BTN_LAST_STATE.1462
+                0x008000d5                CAR_CURRENT_STATE
+ .bss.BTN_STATE.1494
                 0x008000d6        0x1 ./Application/Application.o
- .bss.BTN_STATE.1476
-                0x008000d7        0x1 ./Application/Application.o
- .bss.BTN_LAST_STATE.1475
-                0x008000d8        0x1 ./Application/Application.o
  .bss.BTN_STATE.1509
-                0x008000d9        0x1 ./Application/Application.o
+                0x008000d7        0x1 ./Application/Application.o
+ .bss.BTN_LAST_STATE.1508
+                0x008000d8        0x1 ./Application/Application.o
  .bss.BTN_STATE.1522
+                0x008000d9        0x1 ./Application/Application.o
+ .bss.BTN_LAST_STATE.1521
                 0x008000da        0x1 ./Application/Application.o
- .bss.BTN_STATE.1535
+ .bss.BTN_STATE.1558
                 0x008000db        0x1 ./Application/Application.o
- .bss.BTN_STATE.1547
+ .bss.BTN_STATE.1571
                 0x008000dc        0x1 ./Application/Application.o
- .bss.BTN_STATE.1560
+ .bss.BTN_STATE.1584
                 0x008000dd        0x1 ./Application/Application.o
- .bss.BTN_STATE.1576
+ .bss.BTN_STATE.1596
                 0x008000de        0x1 ./Application/Application.o
+ .bss.BTN_STATE.1609
+                0x008000df        0x1 ./Application/Application.o
+ .bss.BTN_STATE.1625
+                0x008000e0        0x1 ./Application/Application.o
  *(COMMON)
-                0x008000df                PROVIDE (__bss_end, .)
-                0x00003b9c                __data_load_start = LOADADDR (.data)
-                0x00003c08                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008000e1                PROVIDE (__bss_end, .)
+                0x00003c30                __data_load_start = LOADADDR (.data)
+                0x00003c9c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000df        0x0
-                0x008000df                PROVIDE (__noinit_start, .)
+.noinit         0x008000e1        0x0
+                0x008000e1                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008000df                PROVIDE (__noinit_end, .)
-                0x008000df                _end = .
-                0x008000df                PROVIDE (__heap_start, .)
+                0x008000e1                PROVIDE (__noinit_end, .)
+                0x008000e1                _end = .
+                0x008000e1                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -645,27 +656,27 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x4254
+.stab           0x00000000     0x438c
  *(.stab)
  .stab          0x00000000      0xabc ./MCAL/GPIO/GPIO_program.o
- .stab          0x00000abc      0x588 ./MCAL/EXT_INT/EXT_INT_program.o
-                                0x594 (size before relaxing)
- .stab          0x00001044      0x390 ./HAL/LED/LED_program.o
+ .stab          0x00000abc      0x570 ./MCAL/EXT_INT/EXT_INT_program.o
+                                0x57c (size before relaxing)
+ .stab          0x0000102c      0x390 ./HAL/LED/LED_program.o
                                 0x39c (size before relaxing)
- .stab          0x000013d4     0x16c8 ./HAL/LCD/LCD_program.o
+ .stab          0x000013bc     0x16c8 ./HAL/LCD/LCD_program.o
                                0x16d4 (size before relaxing)
- .stab          0x00002a9c      0x63c ./HAL/BUZZER/Buzzer_Prog.o
+ .stab          0x00002a84      0x63c ./HAL/BUZZER/Buzzer_Prog.o
                                 0x7d4 (size before relaxing)
- .stab          0x000030d8      0x294 ./HAL/BUTTON/BUTTON_program.o
+ .stab          0x000030c0      0x294 ./HAL/BUTTON/BUTTON_program.o
                                 0x2a0 (size before relaxing)
- .stab          0x0000336c      0xcb4 ./Application/Application.o
-                                0xe4c (size before relaxing)
- .stab          0x00004020      0x234 ./main.o
-                                0x450 (size before relaxing)
+ .stab          0x00003354      0xe10 ./Application/Application.o
+                                0xfa8 (size before relaxing)
+ .stab          0x00004164      0x228 ./main.o
+                                0x444 (size before relaxing)
 
-.stabstr        0x00000000     0x20e0
+.stabstr        0x00000000     0x211c
  *(.stabstr)
- .stabstr       0x00000000     0x20e0 ./MCAL/GPIO/GPIO_program.o
+ .stabstr       0x00000000     0x211c ./MCAL/GPIO/GPIO_program.o
 
 .stab.excl
  *(.stab.excl)

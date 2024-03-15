@@ -12,20 +12,34 @@
 #include "../MCAL/GPIO/GPIO_interface.h"
 #include "../HAL/LCD/LCD_interface.h"
 #include "../HAL/BUZZER/Buzzer_Interface.h"
+
+#include "../MCAL/EXT_INT/EXT_INT_interface.h"
 #include "Application.h"
 
 enum GEARBOX_STATE {
 	E_PLACEHOLDER,
 	E_GEARBOX_NEUTRAL,
-	E_GEARBX_DRIVE,
+	E_GEARBOX_DRIVE,
 	E_GEARBOX_REVERSE
 };
-enum CCS_STATE {
-	E_CCS_OFF,
-	E_CCS_ON
+enum ACCS_STATE {
+	E_ACCS_OFF,
+	E_ACCS_ON
 
 };
+enum CAR_STATE {
+	E_CAR_IS_STOPPED,
+	E_CAR_IS_ACCELERATING,
+	E_CAR_IS_BRAKING
+};
 
+/*--------------------------------------------------------------------------------------------*/
+/*   						GLOBAL VARIABLES												  */
+/*--------------------------------------------------------------------------------------------*/
+
+uint8 ACCS_CURRENT_STATE = E_ACCS_OFF;
+uint8 GEARBOX_CURRENT_STATE = E_GEARBOX_NEUTRAL;
+uint8 CAR_CURRENT_STATE = E_CAR_IS_STOPPED;
 
 /*--------------------------------------------------------------------------------------------*/
 /*   						FUNCTION BODY FOR INITIALIZE FUNCITON,
@@ -45,6 +59,13 @@ void init(void){
 
 	LCD_init();
 
+	/*enable global interrupt manually*/
+	SET_BIT(SREG,7);
+
+
+
+
+
 
 }
 /*--------------------------------------------------------------------------------------------*/
@@ -58,17 +79,25 @@ void A_APPLICATION_VOID_ACCELERATE(uint8 STATE){
 
 }
 
+
 /*--------------------------------------------------------------------------------------------*/
 /*   						FUNCTION BODY FOR ACCELERATION,
- * THIS FUNCTION MAKES THE CAR BRAKE .
+ * THIS FUNCTION MAKES THE CAR BRAKE INTERRUPT .
 --------------------------------------------------------------------------------------------*/
 
-void A_APPLICATION_VOID_BRAKE(uint8 STATE){
-	LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,STATE);
+void A_APPLICATION_VOID_BRAKE_ON(void){
+	LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,LOGIC_HIGH);
 	A_APPLICATION_VOID_BUZZER_BEEP_BRK(BRK_BTN_PORT,BRK_BTN_PIN);
 }
+/*--------------------------------------------------------------------------------------------*/
+/*   						FUNCTION BODY FOR ACCELERATION,
+ * THIS FUNCTION MAKES THE CAR BRAKE INTERRUPT .
+--------------------------------------------------------------------------------------------*/
 
-
+void A_APPLICATION_VOID_BRAKE_OFF(void){
+	LED_OnOffPositiveLogic(RED_LED_PORT,RED_LED_PIN,LOGIC_LOW);
+	A_APPLICATION_VOID_BUZZER_BEEP_BRK(BRK_BTN_PORT,BRK_BTN_PIN);
+}
 /*--------------------------------------------------------------------------------------------*/
 /*   						FUNCTION BODY FOR ACCELERATION,
  * THIS FUNCTION MAKES THE CAR ACCELERATE .
@@ -147,13 +176,18 @@ void A_APPLICATION_VOID_ACCS_TGL(uint8 BTN_PORT, uint8 BTN_PIN){
 
 		if (BTN_STATE == BTN_Pressed_State) {
 			//do true here
-			LED_Toggle(GRN_LED_PORT,GRN_LED_PIN);
-			A_APPLICATION_VOID_BUZZER_BEEP_ACCS(ACCS_BTN_PORT,ACCS_BTN_PIN);
+			if (!(GEARBOX_CURRENT_STATE == E_GEARBOX_REVERSE)) {
+				LED_Toggle(GRN_LED_PORT,GRN_LED_PIN);
+				A_APPLICATION_VOID_BUZZER_BEEP_ACCS(ACCS_BTN_PORT,ACCS_BTN_PIN);
+				ACCS_CURRENT_STATE = E_ACCS_ON;
+			}
+
 
 		}
 		else
 		{
 			A_APPLICATION_VOID_BUZZER_BEEP_ACCS(ACCS_BTN_PORT,ACCS_BTN_PIN);
+			ACCS_CURRENT_STATE = E_ACCS_OFF;
 
 		}
 	}BTN_LAST_STATE = BTN_STATE;
@@ -170,6 +204,7 @@ void A_APPLICATION_VOID_BTN_ACTION(void){
 	//check for acceleration press
 	if (A_APPLICATION_UINT8_BTN_CHECK(ACL_BTN_PORT,ACL_BTN_PIN)) {
 		A_APPLICATION_VOID_ACCELERATE(ON);
+		CAR_CURRENT_STATE = E_CAR_IS_ACCELERATING;
 
 
 	} else {
@@ -177,10 +212,16 @@ void A_APPLICATION_VOID_BTN_ACTION(void){
 	}
 	//check for brake press
 	if (A_APPLICATION_UINT8_BTN_CHECK(BRK_BTN_PORT,BRK_BTN_PIN)) {
-		A_APPLICATION_VOID_BRAKE(ON);
+		INT1_init(RISING_EDGE_TRIGGER,INPUT_PIN);
+		INT1_SetCallBack(A_APPLICATION_VOID_BRAKE_OFF);
+
 
 	} else {
-		A_APPLICATION_VOID_BRAKE(OFF);
+		INT1_init(FALLING_EDGE_TRIGGER,INPUT_PIN);
+		INT1_SetCallBack(A_APPLICATION_VOID_BRAKE_ON);
+		CAR_CURRENT_STATE = E_CAR_IS_BRAKING;
+
+
 	}
 	//check for accs press
 	if (A_APPLICATION_UINT8_BTN_CHECK(ACCS_BTN_PORT,ACCS_BTN_PIN)) {
@@ -194,8 +235,8 @@ void A_APPLICATION_VOID_BTN_ACTION(void){
 	if (A_APPLICATION_UINT8_BTN_CHECK(GBX_BTN_PORT,GBX_BTN_PIN)) {
 		void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE();
 	}else {
-//
-		}
+		//
+	}
 }
 
 /*--------------------------------------------------------------------------------------------*/
@@ -204,103 +245,105 @@ void A_APPLICATION_VOID_BTN_ACTION(void){
  * THIS FUNCTION ACCEPTS TWO ARGUMENT, THE PORT OF THE BUTTON AND THE PIN OF THE BUTTON */
 /*--------------------------------------------------------------------------------------------*/
 void A_APPLICATION_VOID_BUZZER_BEEP_ACL(uint8 BTN_PORT, uint8 BTN_PIN)
-	{
-		uint8 TEMP;
-		TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
-		uint8 static BTN_STATE = BTN_Pressed_State;
-		if (TEMP == BTN_Pressed_State) {
+{
+	uint8 TEMP;
+	TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
+	uint8 static BTN_STATE = BTN_Pressed_State;
+	if (TEMP == BTN_Pressed_State) {
 
-			if (BTN_STATE == BTN_Pressed_State) {
-				BTN_STATE = BTN_Released_State;
-				H_Buzzer_Void_BuzzerOnce();
-			}
+		if (BTN_STATE == BTN_Pressed_State) {
+			BTN_STATE = BTN_Released_State;
+			H_Buzzer_Void_BuzzerOnce();
 		}
-		else {
-			BTN_STATE = BTN_Pressed_State;
-		}
-
-
-
 	}
+	else {
+		BTN_STATE = BTN_Pressed_State;
+	}
+
+
+
+}
 void A_APPLICATION_VOID_BUZZER_BEEP_BRK(uint8 BTN_PORT, uint8 BTN_PIN)
-	{
-		uint8 TEMP;
-		TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
-		uint8 static BTN_STATE = BTN_Pressed_State;
-		if (TEMP == BTN_Pressed_State) {
+{
+	uint8 TEMP;
+	TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
+	uint8 static BTN_STATE = BTN_Pressed_State;
+	if (TEMP == BTN_Pressed_State) {
 
-			if (BTN_STATE == BTN_Pressed_State) {
-				BTN_STATE = BTN_Released_State;
-				H_Buzzer_Void_BuzzerOnce();
-			}
+		if (BTN_STATE == BTN_Pressed_State) {
+			BTN_STATE = BTN_Released_State;
+			H_Buzzer_Void_BuzzerOnce();
 		}
-		else {
-			BTN_STATE = BTN_Pressed_State;
-		}
-
-
-
 	}
+	else {
+		BTN_STATE = BTN_Pressed_State;
+	}
+
+
+
+}
 void A_APPLICATION_VOID_BUZZER_BEEP_ACCS(uint8 BTN_PORT, uint8 BTN_PIN)
-	{
-		uint8 TEMP;
-		TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
-		uint8 static BTN_STATE = BTN_Pressed_State;
-		if (TEMP == BTN_Pressed_State) {
+{
+	uint8 TEMP;
+	TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
+	uint8 static BTN_STATE = BTN_Pressed_State;
+	if (TEMP == BTN_Pressed_State) {
 
-			if (BTN_STATE == BTN_Pressed_State) {
-				BTN_STATE = BTN_Released_State;
-				LCD_MoveCursor(0,0);
-				LCD_DisplayString((uint8*)"ACCS : ON ");
-				H_Buzzer_Void_BuzzerOnce();
-			}
-		}
-		else {
-			BTN_STATE = BTN_Pressed_State;
+		if (BTN_STATE == BTN_Pressed_State) {
+			BTN_STATE = BTN_Released_State;
+			LCD_MoveCursor(0,0);
+			LCD_DisplayString((uint8*)"ACCS : ON ");
+			H_Buzzer_Void_BuzzerOnce();
 		}
 	}
+	else {
+		BTN_STATE = BTN_Pressed_State;
+	}
+}
 
 void A_APPLICATION_VOID_ACCS_LCD(void)
-		{
-			uint8 TEMP;
-			TEMP = GPIO_ReadPin(GRN_LED_PORT,GRN_LED_PIN);
-			uint8 static BTN_STATE = BTN_Pressed_State;
-			if (TEMP == BTN_Pressed_State) {
+{
+	uint8 TEMP;
+	TEMP = GPIO_ReadPin(GRN_LED_PORT,GRN_LED_PIN);
+	uint8 static BTN_STATE = BTN_Pressed_State;
+	if (TEMP == BTN_Pressed_State) {
 
-				if (BTN_STATE == BTN_Pressed_State) {
-					BTN_STATE = BTN_Released_State;
-					LCD_MoveCursor(0,0);
-					LCD_DisplayString((uint8*)"ACCS : OFF ");
-				}
-			}
-			else {
-				BTN_STATE = BTN_Pressed_State;
-				LCD_MoveCursor(0,0);
-				LCD_DisplayString((uint8*)"ACCS : ON");
-			}
-
-
+		if (BTN_STATE == BTN_Pressed_State) {
+			BTN_STATE = BTN_Released_State;
+			LCD_MoveCursor(0,0);
+			LCD_DisplayString((uint8*)"ACCS : OFF ");
+			ACCS_CURRENT_STATE = E_ACCS_OFF;
 		}
+	}
+	else {
+		BTN_STATE = BTN_Pressed_State;
+		LCD_MoveCursor(0,0);
+		LCD_DisplayString((uint8*)"ACCS : ON");
+		ACCS_CURRENT_STATE = E_ACCS_ON;
+	}
+
+
+}
 
 void A_APPLICATION_VOID_BUZZER_BEEP_GEAR(uint8 BTN_PORT, uint8 BTN_PIN)
-	{
-		uint8 TEMP;
-		TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
-		uint8 static BTN_STATE = BTN_Pressed_State;
-		if (TEMP == BTN_Pressed_State) {
+{
+	uint8 TEMP;
+	TEMP = BUTTON_GetValue(BTN_PORT,BTN_PIN);
+	uint8 static BTN_STATE = BTN_Pressed_State;
+	if (TEMP == BTN_Pressed_State) {
 
-			if (BTN_STATE == BTN_Pressed_State) {
-				BTN_STATE = BTN_Released_State;
-				H_Buzzer_Void_BuzzerOnce();
-			}
+		if (BTN_STATE == BTN_Pressed_State) {
+			BTN_STATE = BTN_Released_State;
+			H_Buzzer_Void_BuzzerOnce();
 		}
-		else {
-			BTN_STATE = BTN_Pressed_State;
-		}
-
-
-
 	}
+	else {
+		BTN_STATE = BTN_Pressed_State;
+	}
+
+
+
+}
 
 
 /*--------------------------------------------------------------------------------------------*/
@@ -327,7 +370,7 @@ void A_APPLICATION_VOID_LCD_STATICS(void){
 
 void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 	// calling main BTN action function here
-	 A_APPLICATION_VOID_BTN_ACTION();
+	A_APPLICATION_VOID_BTN_ACTION();
 	uint8 TEMP;
 	TEMP = BUTTON_GetValue(GBX_BTN_PORT,GBX_BTN_PIN);
 	uint8 static STATE = E_GEARBOX_NEUTRAL;
@@ -353,46 +396,52 @@ void A_APPLICATION_VOID_MAIN_GEARBOX_CHANGE(void){
 	switch (STATE) {
 	case E_GEARBOX_NEUTRAL:
 		//if (A_APPLICATION_UINT8_BTN_CHECK(BRK_BTN_PORT,BRK_BTN_PIN))
-			if (!GPIO_ReadPin(BRK_BTN_PORT,BRK_BTN_PIN)&&(!GPIO_ReadPin(GBX_BTN_PORT,GBX_BTN_PIN))){
+		if (!GPIO_ReadPin(BRK_BTN_PORT,BRK_BTN_PIN)&&(!GPIO_ReadPin(GBX_BTN_PORT,GBX_BTN_PIN))){
 			A_APPLICATION_VOID_ACCS();
 
 			LCD_MoveCursor(1,15);
 			LCD_DisplayString((uint8*)"N");
 			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
-
+			GEARBOX_CURRENT_STATE = E_GEARBOX_NEUTRAL;
+			CAR_CURRENT_STATE = E_CAR_IS_STOPPED;
 
 		}
 
 
 
 		break;
-	case E_GEARBX_DRIVE:
+	case E_GEARBOX_DRIVE:
 		if (!GPIO_ReadPin(BRK_BTN_PORT,BRK_BTN_PIN)&&(!GPIO_ReadPin(GBX_BTN_PORT,GBX_BTN_PIN))) {
 
-		LCD_MoveCursor(1,15);
-		LCD_DisplayString((uint8*)"D");
+			LCD_MoveCursor(1,15);
+			LCD_DisplayString((uint8*)"D");
 
-		A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
+			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
+			GEARBOX_CURRENT_STATE = E_GEARBOX_DRIVE;
 		}
 		break;
 	case E_GEARBOX_REVERSE:
 		if (!GPIO_ReadPin(BRK_BTN_PORT,BRK_BTN_PIN)&&(!GPIO_ReadPin(GBX_BTN_PORT,GBX_BTN_PIN))) {
 
 
-		LCD_MoveCursor(1,15);
-		LCD_DisplayString((uint8*)"R");
+			LCD_MoveCursor(1,15);
+			LCD_DisplayString((uint8*)"R");
+
+			LCD_MoveCursor(0,0);
+			LCD_DisplayString((uint8*)"ACCS : OFF");
+			GEARBOX_CURRENT_STATE = E_GEARBOX_REVERSE;
+
+			GPIO_WritePin(GRN_LED_PORT,GRN_LED_PIN,LOGIC_LOW);
 
 
-		A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
+			A_APPLICATION_VOID_BUZZER_BEEP_GEAR(GBX_BTN_PORT,GBX_BTN_PIN);
 		}
 		break;
 	default: STATE = E_GEARBOX_NEUTRAL;
 	break;
 
-		}
+	}
 }
-
-
 
 
 
