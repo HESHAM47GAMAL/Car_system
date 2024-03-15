@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
  <FRAME activewindow="0">
-  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffffb00100001400000080070000f8030000</PLACEMENT>
+  <PLACEMENT>2c00000002000000030000000083ffff0083ffffffffffffffffffffb00100001400000080070000f8030000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
@@ -14,12 +14,17 @@
      <ITEM name="Version">100</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="350" x="68" flags="00000032" y="180" h="200" pid="1" iid="-1">
+   <POPUP w="780" x="1079" flags="00008033" y="636" h="360" pid="1" iid="-1">
     <PROPERTIES>
      <ITEM name="Address Column Width">82</ITEM>
      <ITEM name="AutoResize">No</ITEM>
      <ITEM name="Gridlines">Yes</ITEM>
-     <ITEM name="Name Column Width">82</ITEM>
+     <ITEM name="Item 0">"ADC","00800024",00000001,0000000E,36,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 1">"ADC_conversion_value","008000C1",00000001,0000000E,193,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 2">"RegisterValue","008000C7",00000001,0000000E,199,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 3">"distance_ACCS","008000C3",00000001,0000000E,195,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 4">"Adc_value_pure","008000C0",00000001,0000000E,192,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Name Column Width">247</ITEM>
      <ITEM name="ShowAddresses">Yes</ITEM>
      <ITEM name="ShowPreviousValues">No</ITEM>
      <ITEM name="ShowTypes">No</ITEM>
@@ -28,10 +33,10 @@
      <ITEM name="Value Column Width">82</ITEM>
      <ITEM name="Version">100</ITEM>
      <ITEM name="Watch Expression Column Width">82</ITEM>
-     <ITEM name="nItems">0</ITEM>
+     <ITEM name="nItems">4</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="30" x="88" flags="00000008" y="200" h="16" pid="3" iid="1">
+   <POPUP w="258" x="88" flags="00000008" y="200" h="255" pid="3" iid="1">
     <PROPERTIES/>
    </POPUP>
    <POPUP w="8" x="108" flags="0000000a" y="220" h="1" pid="10" iid="1">
@@ -105,7 +110,7 @@
      <ITEM name="nBreakpoints">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="1011" x="909" flags="0000800b" y="259" h="532" pid="2" iid="1">
+   <POPUP w="1011" x="313" flags="0000000b" y="460" h="532" pid="2" iid="1">
     <PROPERTIES>
      <ITEM name="Address Column Width">93</ITEM>
      <ITEM name="AutoResize">No</ITEM>
@@ -114,9 +119,10 @@
      <ITEM name="ShowAddresses">Yes</ITEM>
      <ITEM name="ShowGlobals">Yes</ITEM>
      <ITEM name="ShowPreviousValues">No</ITEM>
-     <ITEM name="ShowTypes">No</ITEM>
+     <ITEM name="ShowTypes">Yes</ITEM>
      <ITEM name="ShowWatchPoint">No</ITEM>
      <ITEM name="TriggerMode">0</ITEM>
+     <ITEM name="Type Column Width">242</ITEM>
      <ITEM name="Value Column Width">93</ITEM>
      <ITEM name="Version">100</ITEM>
      <ITEM name="nItems">0</ITEM>

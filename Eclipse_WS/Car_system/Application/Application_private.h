@@ -54,7 +54,7 @@ static void Hanndle_GrearBox_D_State(void);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-static void DashBoard_Init(void);
+// static void DashBoard_Init(void);
 
 
 /*
@@ -74,7 +74,7 @@ static void Buttons_Update(void);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-static void DashBoard_Update_GearBox_state(uint8 GearBox_state);
+// static void DashBoard_Update_GearBox_state(uint8 GearBox_state);
 
 
 /*
@@ -84,7 +84,28 @@ static void DashBoard_Update_GearBox_state(uint8 GearBox_state);
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
+// static void DashBoard_Update_ACCS_State(uint8 ACCS_state);
+
+
+/*
+*   @brief : this function used to Show only "Distance : " in LCD
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+// static void DashBoard_DistanceShow(void); 
+
+
+/*
+*   @brief : this function used to hide all data in last row by display white space "                  "
+*   @args  void
+*   @return: no return
+*   @synchronous / Asynchronous : Synchronous
+*   @ Reentrant / Non Reentrant : Reentrant
+*/
+// static void DashBoard_DistanceHide(void);
+
 
 
 /*
@@ -116,28 +137,31 @@ static void Buzzer_NotifySound(void);
 void Buzzer_timeOutOff(void);
 
 
+
+
 /*
-*   @brief : this function used to Show only "Distance : " in LCD
+*   @brief : this function used to get last value from Potentiometer and Display it
 *   @args  void
 *   @return: no return
 *   @synchronous / Asynchronous : Synchronous
 *   @ Reentrant / Non Reentrant : Reentrant
 */
-static void DashBoard_DistanceShow(void); 
-
-
-/*
-*   @brief : this function used to hide all data in last row by display white space "                  "
-*   @args  void
-*   @return: no return
-*   @synchronous / Asynchronous : Synchronous
-*   @ Reentrant / Non Reentrant : Reentrant
-*/
-static void DashBoard_DistanceHide(void);
-
 static void ACCS_CatchDistance(void);
+
+
+static void ACCS_DicisionTake(void);
 
 /*  This only function used with brake ISR that to make push to it in stack and when same ISR happen make context switch and return to function */
 /*  Try to Ask Eng Mohamed Helmy    */
 
 void tessst (void);
+
+
+
+
+/*  For Small LCD */
+static void DashBoard_Init_small(void);
+static void DashBoard_Update_GearBox_state_small(uint8 GearBox_state);
+static void DashBoard_Update_ACCS_State_small(uint8 ACCS_state);
+static void DashBoard_DistanceShow_small(void);
+static void DashBoard_DistanceHide_small(void);
