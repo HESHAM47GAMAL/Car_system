@@ -165,3 +165,4 @@ static void DashBoard_Update_GearBox_state_small(uint8 GearBox_state);
 static void DashBoard_Update_ACCS_State_small(uint8 ACCS_state);
 static void DashBoard_DistanceShow_small(void);
 static void DashBoard_DistanceHide_small(void);
+static void DashBoard_UpdateSpeed(void);

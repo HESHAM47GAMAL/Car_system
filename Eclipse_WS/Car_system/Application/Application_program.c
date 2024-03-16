@@ -33,6 +33,10 @@ uint8 GearBox_Current_State = N_GearBox; /* Carry current state of GearBox*/
 uint8 ACCS_Currnet_state = ACCS_Disable; /* Carry Current dtate of ACCS and Note that it will take in consideration when GearBox_State == D*/
 volatile float32 distance_ACCS = 0 ;    /*  Global Variable carry distance between may car and car in front  of me and will take in consideration when GearBox_State == D && ACCS_state == ON   */
 
+/*  Should be signed as If press brake in N mode will decrease -2 and if data type uint8 so when decrease will happen underflow and if value equal Zero at first so will be 254 so program will have bug*/
+static sint16 Car_Speed = 0; /*  Global variable carry Speed of Car  */
+
+static volatile uint8 Global_Braking_BTN_State = BTN_Released_State ;
 
 void App_Init(void)
 {
@@ -82,26 +86,9 @@ void App_Init(void)
     /*  Intialize Bash Board for Car*/
     //DashBoard_Init();
     /*  Initailize for small LCD*/
+
     DashBoard_Init_small();
 }
-
-
-
-// static void DashBoard_Init(void)
-// {
-//     /*  Display GearBox Current state  */
-//     LCD_MoveCursor(0,0);
-//     LCD_DisplayString((const uint8 * )"GearBox(N,D,R) : N");
-
-//     /*  Display speed */
-//     LCD_MoveCursor(1,0);
-//     LCD_DisplayString((const uint8 * )"Speed : 0");
-
-//     /*  Display state of Adaptive Cruise control  */
-//     LCD_MoveCursor(2,0);
-//     LCD_DisplayString((const uint8 * )"ACCS(ON,OFF) : OFF");
-
-// }
 
 
 
@@ -119,7 +106,7 @@ static void Hanndle_GrearBox_D_State(void)
     if((ACCS_Currnet_state == ACCS_Enable) && (D_GearBox == GearBox_Current_State))
     {
         ACCS_CatchDistance();
-        /*  may be interrupt happen here so inside next function check if brake button pressed*/
+        /*  may be interrupt happen here so inside next function check if brake button pressed and make disable for ACCS    */
         ACCS_DicisionTake();
         
     }
@@ -189,21 +176,22 @@ static void Buttons_Update(void)
         /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
         if(GearBox_IsStillPressed == NO_Condition)
         {
+            /* turn buzzer on and give timer 0 clock and set timeout    */
             Buzzer_NotifySound();
 
-
             GearBox_IsStillPressed = YES_Condition ;
+            /*  Go to next state for gearbox*/
             GearBox_Current_State ++ ;
             if(GearBox_Current_State == GearBox_Return_to_N  )
             {
                 GearBox_Current_State = N_GearBox ;
                 
             }
+
             /*  call function to update gearbox state in Dashboard*/
             //DashBoard_Update_GearBox_state(GearBox_Current_State);
             /*  Initailize for small LCD*/
             DashBoard_Update_GearBox_state_small(GearBox_Current_State);
-
         }
         
     }
@@ -211,7 +199,6 @@ static void Buttons_Update(void)
     {
         /*  Enter this state when Button released*/
         GearBox_IsStillPressed = NO_Condition ;
-        
     }
   
 
@@ -227,9 +214,11 @@ static void Buttons_Update(void)
             /*  This condition placed here to take action for button press only when pressed and if still pressed Do nothing    */
             if(ACCS_IsStillPressed == NO_Condition)
             {
+                /* turn buzzer on and give timer 0 clock and set timeout    */
                 Buzzer_NotifySound();
 
                 ACCS_IsStillPressed = YES_Condition ;
+                /*  change state of led that refer to ACCS*/
                 LED_Toggle(Green_LED_PORT,Green_LED_PIN); 
                 if(ACCS_Currnet_state == ACCS_Disable ) 
                 {
@@ -268,33 +257,94 @@ static void Buttons_Update(void)
         }
     }
 
-    if((GearBox_Current_State == D_GearBox) || (GearBox_Current_State == R_GearBox))
-    {
-        /*  This variable used to carry if button is still pressed after last pressed as give buzzer sound only once at the begin of press    */
-        static uint8 Acccelerate_IsStillPressed = NO_Condition;
-        /*  Take current state for button  to check if still pressed*/
-        uint8 Acccelerate_BTN_State = BUTTON_GetValue(Accelerate_BTN_PORT,Accelerate_BTN_PIN);
-        
-        if(Acccelerate_BTN_State == BTN_Pressed_State)
-        {
-            LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_ON);
 
-            /*  the reason of this avoid make sound while accelerate BTN pressed    */
-            if(Acccelerate_IsStillPressed == NO_Condition)
-            {
-                Buzzer_NotifySound();
-                Acccelerate_IsStillPressed = YES_Condition ;
-            }
-        }
-        else
+    /*  This variable used to carry if button is still pressed after last pressed as give buzzer sound only once at the begin of press    */
+    static uint8 Acccelerate_IsStillPressed = NO_Condition;
+    /*  Take current state for button  to check if still pressed*/
+    uint8 Acccelerate_BTN_State = BUTTON_GetValue(Accelerate_BTN_PORT,Accelerate_BTN_PIN);
+    
+    if(Acccelerate_BTN_State == BTN_Pressed_State)
+    {
+        LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_ON);
+        /*  Inrease Speed work only in Drining or Reverse mode  */
+        if((GearBox_Current_State == D_GearBox )|| (GearBox_Current_State == R_GearBox) )
         {
-            Acccelerate_IsStillPressed = NO_Condition;
-            LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
+            /*  Incerease Speed of Car  */
+            Car_Speed += 1;
+            if(Car_Speed > 100)
+                Car_Speed  = 100;
+            /*  Display current speed   */
+            DashBoard_UpdateSpeed(); 
+        }
+
+        /*  the reason of this avoid make sound while accelerate BTN pressed    */
+        if(Acccelerate_IsStillPressed == NO_Condition)
+        {
+            Buzzer_NotifySound();
+            Acccelerate_IsStillPressed = YES_Condition ;
+        }
+    }
+    else
+    {
+        Acccelerate_IsStillPressed = NO_Condition;
+        LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
+    }
+
+    /*  Here check if Braking Button is pressed so decrease speed of car*/
+    if(Global_Braking_BTN_State ==  BTN_Pressed_State)
+    {
+        /*  Incerease Speed of Car  */
+            Car_Speed -= 2;
+            if(Car_Speed < 0)
+                Car_Speed  = 0;
+            /*  Display current speed   */
+            DashBoard_UpdateSpeed(); 
+    }
+
+
+    if( (GearBox_Current_State == D_GearBox ) || (GearBox_Current_State == R_GearBox ) )
+    {
+        if( (GearBox_Current_State == D_GearBox ) && (ACCS_Currnet_state == ACCS_Enable))
+        {
+            /*  Will here handle alot of things*/
+        }
+        else if( (Global_Braking_BTN_State ==  BTN_Released_State) && (Acccelerate_BTN_State == BTN_Released_State) )
+        {
+            static uint8 repeation = 0 ;
+            repeation += 1;
+            if(repeation == 10)
+            {
+                repeation = 0;
+                Car_Speed -= 1;
+                if(Car_Speed < 0)
+                    Car_Speed  = 0;
+                /*  Display current speed   */
+                DashBoard_UpdateSpeed(); 
+            }
         }
     }
 
 
 }
+
+
+
+// static void DashBoard_Init(void)
+// {
+//     /*  Display GearBox Current state  */
+//     LCD_MoveCursor(0,0);
+//     LCD_DisplayString((const uint8 * )"GearBox(N,D,R) : N");
+
+//     /*  Display speed */
+//     LCD_MoveCursor(1,0);
+//     LCD_DisplayString((const uint8 * )"Speed : 0");
+
+//     /*  Display state of Adaptive Cruise control  */
+//     LCD_MoveCursor(2,0);
+//     LCD_DisplayString((const uint8 * )"ACCS(ON,OFF) : OFF");
+
+// }
+
 
 
 // static void DashBoard_Update_GearBox_state(uint8 GearBox_state)
@@ -346,6 +396,8 @@ static void Braking_Button_Handling(void)
 
         /*  Make update to state    */
         Braking_BTN_State = BTN_Pressed_State;
+        /*  Update global varaible that carry state of car speed    */
+        Global_Braking_BTN_State = Braking_BTN_State;
         /*  Turn led on  */
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_ON);
 /*                Here when I press in Braking if in D mode should Disable ACCS mode                                                       */
@@ -377,6 +429,8 @@ static void Braking_Button_Handling(void)
 
         INT1_init(FALLING_EDGE_TRIGGER,INPUT_PIN);
         Braking_BTN_State = BTN_Released_State;
+        /*  Update global varaible that carry state of car speed    */
+        Global_Braking_BTN_State = Braking_BTN_State;
         LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_OFF);
     }
 }
@@ -497,12 +551,20 @@ static void ACCS_DicisionTake(void)
         else if (((uint8)(distance_ACCS) >= 0))
         {
             /*  Turn Of all leds    */
+            LED_OnOffPositiveLogic(Red_LED_PORT,Red_LED_PIN,LED_OFF);
+            LED_OnOffPositiveLogic(Yellow_LED_PORT,Yellow_LED_PIN,LED_OFF);
+            LED_OnOffPositiveLogic(Blue_LED_PORT,BLUE_LED_PIN,LED_OFF);
+            LED_OnOffPositiveLogic(Green_LED_PORT,Green_LED_PIN,LED_OFF);
 
             /*  Display Crash message   */
+            LCD_ClearScreen();
+            LCD_DisplayString((const uint8 *)"Crushed car ):");
+            
 
             /*  flash Relay  */
 
             /*  Disable all Button*/
+            while(1);
         }
         
         sei();
@@ -557,4 +619,13 @@ static void DashBoard_DistanceHide_small(void)
 {
     LCD_MoveCursor(1,8);
     LCD_DisplayString((const uint8 * )"        ");
+}
+
+static void DashBoard_UpdateSpeed(void)
+{
+    /*  Display speed */
+    LCD_MoveCursor(0,12);
+    LCD_intToString((uint8)Car_Speed);    
+    LCD_DisplayCharacter(' ');
+
 }
